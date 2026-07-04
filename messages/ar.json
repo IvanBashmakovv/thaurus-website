@@ -1,0 +1,49 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "company": "الشركة",
+    "license": "الترخيص والتنظيم",
+    "markets": "الأسواق",
+    "marketsOverview": "جميع الأسواق",
+    "tools": "الأدوات والموارد",
+    "toolsShort": "الأدوات",
+    "toolsOverview": "جميع الأدوات",
+    "accountTypes": "أنواع الحسابات",
+    "accountsShort": "الحسابات",
+    "faq": "الأسئلة الشائعة",
+    "blog": "المدونة",
+    "contact": "اتصل بنا",
+    "login": "تسجيل الدخول",
+    "openAccount": "فتح حساب",
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة",
+    "language": "اللغة"
+  },
+  "trust": {
+    "regulatedBadge": "مرخّص من هيئة FSC موريشيوس",
+    "license": "الترخيص {number}",
+    "verify": "تحقّق في سجل FSC"
+  },
+  "home": {
+    "metaTitle": "Thaurus — وسيط متعدد الأصول مرخّص | تداول الفوركس والأسهم وعقود الفروقات على MT5",
+    "metaDescription": "Thaurus وسيط فوركس وعقود فروقات مرخّص (هيئة FSC موريشيوس، الترخيص GB22200432). تداول الفوركس والأسهم والعقود الآجلة وعقود الفروقات والسلع على MetaTrader 5 بفروق أسعار ضيّقة وتنفيذ سريع ودعم بشري حقيقي.",
+    "kicker": "نحن",
+    "subtitle": "Thaurus وسيط متعدد الأصول مرخّص (هيئة FSC موريشيوس). تداول الفوركس والأسهم والعقود الآجلة وعقود الفروقات والسلع على MetaTrader 5 مع أدوات متقدمة ودعم بشري حقيقي.",
+    "ctaPrimary": "فتح حساب",
+    "ctaSecondary": "تعرّف علينا أكثر"
+  },
+  "footer": {
+    "tagline": "وسيط متعدد الأصول مرخّص قائم على الشفافية. تداول الفوركس والأسهم والعقود الآجلة وعقود الفروقات والسلع على MetaTrader 5.",
+    "pages": "الصفحات",
+    "legal": "الشؤون القانونية",
+    "contactInfo": "اتصل بنا",
+    "followUs": "تابعنا",
+    "licensedAs": "{legalName} مرخّصة ومنظَّمة من قبل {regulator} بصفتها {category}.",
+    "licenseLink": "الترخيص {number} — تحقّق في سجل FSC",
+    "riskWarningTitle": "تحذير المخاطر",
+    "riskWarningPlaceholder": "(في انتظار النص التنظيمي الكامل.)",
+    "restrictedTitle": "الولايات القضائية المحظورة",
+    "restrictedPlaceholder": "(في انتظار القائمة الكاملة.)",
+    "copyright": "© {year} {legalName}. جميع الحقوق محفوظة."
+  }
+}

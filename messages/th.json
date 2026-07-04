@@ -1,0 +1,49 @@
+{
+  "nav": {
+    "home": "หน้าแรก",
+    "company": "บริษัท",
+    "license": "ใบอนุญาตและการกำกับดูแล",
+    "markets": "ตลาด",
+    "marketsOverview": "ตลาดทั้งหมด",
+    "tools": "เครื่องมือและแหล่งข้อมูล",
+    "toolsShort": "เครื่องมือ",
+    "toolsOverview": "เครื่องมือทั้งหมด",
+    "accountTypes": "ประเภทบัญชี",
+    "accountsShort": "บัญชี",
+    "faq": "คำถามที่พบบ่อย",
+    "blog": "บล็อก",
+    "contact": "ติดต่อ",
+    "login": "เข้าสู่ระบบ",
+    "openAccount": "เปิดบัญชี",
+    "openMenu": "เปิดเมนู",
+    "closeMenu": "ปิดเมนู",
+    "language": "ภาษา"
+  },
+  "trust": {
+    "regulatedBadge": "กำกับดูแลโดย FSC Mauritius",
+    "license": "ใบอนุญาต {number}",
+    "verify": "ตรวจสอบในทะเบียน FSC"
+  },
+  "home": {
+    "metaTitle": "Thaurus — โบรกเกอร์หลายสินทรัพย์ที่อยู่ภายใต้การกำกับดูแล | เทรด Forex หุ้น และ CFD บน MT5",
+    "metaDescription": "Thaurus คือโบรกเกอร์ Forex และ CFD ที่อยู่ภายใต้การกำกับดูแล (FSC Mauritius ใบอนุญาต GB22200432) เทรด Forex หุ้น ฟิวเจอร์ส CFD และสินค้าโภคภัณฑ์บน MetaTrader 5 ด้วยสเปรดที่แคบ การดำเนินการที่รวดเร็ว และทีมสนับสนุนที่เป็นคนจริง",
+    "kicker": "เราคือ",
+    "subtitle": "Thaurus คือโบรกเกอร์หลายสินทรัพย์ที่อยู่ภายใต้การกำกับดูแล (FSC Mauritius) เทรด Forex หุ้น ฟิวเจอร์ส CFD และสินค้าโภคภัณฑ์บน MetaTrader 5 พร้อมเครื่องมือขั้นสูงและการสนับสนุนจากทีมงานจริง",
+    "ctaPrimary": "เปิดบัญชี",
+    "ctaSecondary": "เรียนรู้เพิ่มเติมเกี่ยวกับเรา"
+  },
+  "footer": {
+    "tagline": "โบรกเกอร์หลายสินทรัพย์ที่อยู่ภายใต้การกำกับดูแล สร้างขึ้นบนความโปร่งใส เทรด Forex หุ้น ฟิวเจอร์ส CFD และสินค้าโภคภัณฑ์บน MetaTrader 5",
+    "pages": "หน้าเพจ",
+    "legal": "กฎหมาย",
+    "contactInfo": "ติดต่อ",
+    "followUs": "ติดตามเรา",
+    "licensedAs": "{legalName} ได้รับใบอนุญาตและกำกับดูแลโดย {regulator} ในฐานะ {category}",
+    "licenseLink": "ใบอนุญาต {number} — ตรวจสอบในทะเบียน FSC",
+    "riskWarningTitle": "คำเตือนความเสี่ยง",
+    "riskWarningPlaceholder": "(อยู่ระหว่างรอข้อความกำกับดูแลฉบับเต็ม)",
+    "restrictedTitle": "เขตอำนาจศาลที่ถูกจำกัด",
+    "restrictedPlaceholder": "(อยู่ระหว่างรอรายการฉบับเต็ม)",
+    "copyright": "© {year} {legalName} สงวนลิขสิทธิ์"
+  }
+}

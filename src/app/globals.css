@@ -1,0 +1,302 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/* Thaurus design tokens (Brand Book 2022). Dark premium theme.        */
+/* Colors are strictly limited to the brand palette + functional       */
+/* success/danger for quote movement (not in the brand book, per ТЗ).  */
+/* ------------------------------------------------------------------ */
+@theme {
+  --color-bg: #131228; /* dark blue — primary background */
+  --color-bg-elevated: #1b1a33; /* cards */
+  --color-bg-raised: #242247; /* hover / nested surfaces */
+  --color-border: #2b2a4d; /* hairline borders derived from bg */
+
+  --color-primary: #42478b; /* purple — primary accent / CTA */
+  --color-primary-hover: #4f55a6; /* lightened for hover */
+  --color-primary-soft: #2a2c57; /* muted primary for backgrounds */
+
+  --color-iron: #58595b; /* neutral */
+  --color-grey: #a7a9ac; /* secondary text */
+  --color-white: #ffffff;
+
+  --color-success: #2dd4a7; /* quote up */
+  --color-danger: #f0556d; /* quote down */
+
+  /* Semantic aliases used by Tailwind's bg-background / text-foreground. */
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-white);
+  --color-muted: var(--color-grey);
+
+  /* Tone-aware tokens (dark defaults). Override the --color-* vars directly in
+     .tone-light / .tone-dark so Tailwind's bg-surface / text-fg flip per section
+     and stay readable on both white and blue backgrounds. */
+  --color-surface: #131228;
+  --color-surface-2: #1b1a33;
+  --color-edge: #2b2a4d;
+  --color-fg: #ffffff;
+  --color-fg-muted: #a7a9ac;
+  --color-fg-faint: #6f7088;
+
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, sans-serif;
+
+  --radius-card: 1rem;
+  --radius-pill: 9999px;
+
+  --shadow-glow: 0 0 80px -20px rgba(66, 71, 139, 0.55);
+  --shadow-card: 0 8px 30px -12px rgba(0, 0, 0, 0.5);
+
+  /* Fluid type scale. */
+  --text-display: clamp(3rem, 12vw, 11rem);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+/* Section tone overrides — flip the Tailwind color vars directly so every
+   bg-surface / text-fg / border-edge re-resolves per section. */
+.tone-dark {
+  --color-surface: #131228;
+  --color-surface-2: #1b1a33;
+  --color-edge: #2b2a4d;
+  --color-fg: #ffffff;
+  --color-fg-muted: #a7a9ac;
+  --color-fg-faint: #6f7088;
+  color: var(--color-fg);
+  color-scheme: dark;
+}
+
+.tone-light {
+  --color-surface: #eef1fb;
+  --color-surface-2: #ffffff;
+  --color-edge: #e2e6f3;
+  --color-fg: #131228;
+  --color-fg-muted: #51546b;
+  --color-fg-faint: #8a8da3;
+  color: var(--color-fg);
+  color-scheme: light;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    /* Subtle vertical depth instead of one flat fill (kills the "AI flat" look). */
+    background-color: var(--color-bg);
+    background-image: radial-gradient(
+        120% 80% at 50% -10%,
+        rgba(66, 71, 139, 0.18) 0%,
+        rgba(19, 18, 40, 0) 55%
+      ),
+      linear-gradient(180deg, #14132c 0%, #131228 40%, #100f22 100%);
+    background-attachment: fixed;
+    color: var(--color-white);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--color-primary);
+    color: var(--color-white);
+  }
+
+  /* Visible, brand-colored keyboard focus everywhere (WCAG 2.4.7). */
+  :focus-visible {
+    outline: 2px solid var(--color-primary-hover);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+@layer utilities {
+  /* Dotted-grid backdrop for the hero (brand-dark dots, per hero spec). */
+  .bg-dot-grid {
+    background-image: radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.06) 1px,
+      transparent 1.4px
+    );
+    background-size: 28px 28px;
+  }
+
+  .text-gradient {
+    background: linear-gradient(180deg, #fff 30%, var(--color-grey));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Fixed film-grain overlay — adds organic texture over flat dark fills. */
+  .grain-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.045;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Hairline gradient divider between sections. */
+  .edge-top {
+    border-top: 1px solid transparent;
+    border-image: linear-gradient(
+        90deg,
+        transparent,
+        var(--color-border) 30%,
+        var(--color-border) 70%,
+        transparent
+      )
+      1;
+  }
+
+  /* Soft brand glow blob — positioned per-section for variety. */
+  .glow-blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(80px);
+    pointer-events: none;
+    background: radial-gradient(
+      circle,
+      rgba(66, 71, 139, 0.4) 0%,
+      rgba(19, 18, 40, 0) 70%
+    );
+  }
+
+  /* Faint chart/data grid, masked to fade at the edges. */
+  .bg-chart-grid {
+    background-image: linear-gradient(
+        to right,
+        rgba(167, 169, 172, 0.05) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, rgba(167, 169, 172, 0.05) 1px, transparent 1px);
+    background-size: 44px 44px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 75%);
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 75%);
+  }
+
+  /* Drifting aurora blobs container. */
+  .aurora {
+    position: absolute;
+    inset: -25%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .aurora > span {
+    position: absolute;
+    display: block;
+    border-radius: 9999px;
+    filter: blur(90px);
+    will-change: transform;
+    animation: aurora-drift 28s ease-in-out infinite;
+  }
+}
+
+@keyframes aurora-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(5%, -4%, 0) scale(1.12);
+  }
+  66% {
+    transform: translate3d(-4%, 5%, 0) scale(0.92);
+  }
+}
+
+/* Device-showcase animations (MetaTrader section). */
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+@keyframes shine-sweep {
+  0% {
+    transform: translateX(-130%) skewX(-18deg);
+  }
+  60%,
+  100% {
+    transform: translateX(260%) skewX(-18deg);
+  }
+}
+
+@layer utilities {
+  .animate-float-y {
+    animation: float-y 6s ease-in-out infinite;
+    will-change: transform;
+  }
+  .animate-glow-pulse {
+    animation: glow-pulse 5s ease-in-out infinite;
+  }
+  .shine-overlay {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+  .shine-overlay::after {
+    content: "";
+    position: absolute;
+    top: -20%;
+    left: 0;
+    width: 35%;
+    height: 140%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.35),
+      transparent
+    );
+    animation: shine-sweep 6s ease-in-out infinite;
+  }
+}
+
+/* Respect reduced-motion: disable non-essential animation globally. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

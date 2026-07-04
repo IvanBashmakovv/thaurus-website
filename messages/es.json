@@ -1,0 +1,49 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "company": "Empresa",
+    "license": "Licencia y regulación",
+    "markets": "Mercados",
+    "marketsOverview": "Todos los mercados",
+    "tools": "Herramientas y recursos",
+    "toolsShort": "Herramientas",
+    "toolsOverview": "Todas las herramientas",
+    "accountTypes": "Tipos de cuenta",
+    "accountsShort": "Cuentas",
+    "faq": "Preguntas frecuentes",
+    "blog": "Blog",
+    "contact": "Contacto",
+    "login": "Iniciar sesión",
+    "openAccount": "Abrir cuenta",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "language": "Idioma"
+  },
+  "trust": {
+    "regulatedBadge": "Regulado por la FSC de Mauricio",
+    "license": "Licencia {number}",
+    "verify": "Verificar en el registro de la FSC"
+  },
+  "home": {
+    "metaTitle": "Thaurus — Bróker multiactivo regulado | Forex, acciones y CFD en MT5",
+    "metaDescription": "Thaurus es un bróker de Forex y CFD regulado (FSC Mauricio, licencia GB22200432). Opera Forex, acciones, futuros, CFD y materias primas en MetaTrader 5, con spreads ajustados, ejecución rápida y soporte humano real.",
+    "kicker": "Somos",
+    "subtitle": "Thaurus es un bróker multiactivo regulado (FSC Mauricio). Opera Forex, acciones, futuros, CFD y materias primas en MetaTrader 5, con herramientas avanzadas y soporte humano real.",
+    "ctaPrimary": "Abrir cuenta",
+    "ctaSecondary": "Conoce más sobre nosotros"
+  },
+  "footer": {
+    "tagline": "Un bróker multiactivo regulado basado en la transparencia. Opera Forex, acciones, futuros, CFD y materias primas en MetaTrader 5.",
+    "pages": "Páginas",
+    "legal": "Legal",
+    "contactInfo": "Contacto",
+    "followUs": "Síguenos",
+    "licensedAs": "{legalName} está autorizada y regulada por la {regulator} como {category}.",
+    "licenseLink": "Licencia {number} — verifícala en el registro de la FSC",
+    "riskWarningTitle": "Advertencia de riesgo",
+    "riskWarningPlaceholder": "(A la espera del texto de cumplimiento completo.)",
+    "restrictedTitle": "Jurisdicciones restringidas",
+    "restrictedPlaceholder": "(A la espera de la lista completa.)",
+    "copyright": "© {year} {legalName}. Todos los derechos reservados."
+  }
+}

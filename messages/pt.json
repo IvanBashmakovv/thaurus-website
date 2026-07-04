@@ -1,0 +1,49 @@
+{
+  "nav": {
+    "home": "Início",
+    "company": "Empresa",
+    "license": "Licença e regulação",
+    "markets": "Mercados",
+    "marketsOverview": "Todos os mercados",
+    "tools": "Ferramentas e recursos",
+    "toolsShort": "Ferramentas",
+    "toolsOverview": "Todas as ferramentas",
+    "accountTypes": "Tipos de conta",
+    "accountsShort": "Contas",
+    "faq": "Perguntas frequentes",
+    "blog": "Blog",
+    "contact": "Contato",
+    "login": "Entrar",
+    "openAccount": "Abrir conta",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu",
+    "language": "Idioma"
+  },
+  "trust": {
+    "regulatedBadge": "Regulado pela FSC de Maurício",
+    "license": "Licença {number}",
+    "verify": "Verificar no registro da FSC"
+  },
+  "home": {
+    "metaTitle": "Thaurus — Corretora multiativos regulada | Forex, ações e CFDs no MT5",
+    "metaDescription": "A Thaurus é uma corretora de Forex e CFDs regulada (FSC Maurício, licença GB22200432). Negocie Forex, ações, futuros, CFDs e commodities no MetaTrader 5, com spreads baixos, execução rápida e suporte humano real.",
+    "kicker": "Nós somos",
+    "subtitle": "A Thaurus é uma corretora multiativos regulada (FSC Maurício). Negocie Forex, ações, futuros, CFDs e commodities no MetaTrader 5, com ferramentas avançadas e suporte humano real.",
+    "ctaPrimary": "Abrir conta",
+    "ctaSecondary": "Saiba mais sobre nós"
+  },
+  "footer": {
+    "tagline": "Uma corretora multiativos regulada, baseada na transparência. Negocie Forex, ações, futuros, CFDs e commodities no MetaTrader 5.",
+    "pages": "Páginas",
+    "legal": "Jurídico",
+    "contactInfo": "Contato",
+    "followUs": "Siga-nos",
+    "licensedAs": "A {legalName} é licenciada e regulada pela {regulator} como {category}.",
+    "licenseLink": "Licença {number} — verifique no registro da FSC",
+    "riskWarningTitle": "Aviso de risco",
+    "riskWarningPlaceholder": "(Aguardando o texto de conformidade completo.)",
+    "restrictedTitle": "Jurisdições restritas",
+    "restrictedPlaceholder": "(Aguardando a lista completa.)",
+    "copyright": "© {year} {legalName}. Todos os direitos reservados."
+  }
+}

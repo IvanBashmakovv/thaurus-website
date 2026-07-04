@@ -1,0 +1,50 @@
+{
+  "nav": {
+    "home": "Home",
+    "company": "Company",
+    "license": "License & Regulation",
+    "markets": "Markets",
+    "marketsOverview": "All Markets",
+    "tools": "Tools & Resources",
+    "toolsShort": "Tools",
+    "toolsOverview": "All Tools",
+    "accountTypes": "Account Types",
+    "accountsShort": "Accounts",
+    "faq": "FAQ",
+    "blog": "Blog",
+    "contact": "Contact",
+    "login": "Login",
+    "openAccount": "Open account",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language"
+  },
+  "trust": {
+    "regulatedBadge": "Regulated by FSC Mauritius",
+    "license": "License {number}",
+    "verify": "Verify on the FSC register"
+  },
+  "home": {
+    "metaTitle": "Thaurus — Regulated Multi-Asset Broker | Forex, Stocks & CFDs on MT5",
+    "metaDescription": "Thaurus is a regulated forex and CFD broker (FSC Mauritius, license GB22200432). Trade forex, stocks, futures, CFDs and commodities on MetaTrader 5 — tight spreads, fast execution and real human support.",
+    "kicker": "We are",
+    "subtitle": "Thaurus is a regulated multi-asset broker (FSC Mauritius). Trade forex, stocks, futures, CFDs and commodities on MetaTrader 5 — with advanced tools and real human support.",
+    "ctaPrimary": "Open account",
+    "ctaSecondary": "Learn more about us"
+  },
+  "footer": {
+    "tagline": "Thaurus is a comprehensive trading company that allows traders to access a wide range of financial instruments and trade them via our platforms.",
+    "tagline2": "With its advanced tools and features, Thaurus provides traders with the resources they need to make informed decisions and execute trades efficiently.",
+    "pages": "Pages",
+    "legal": "Legal",
+    "contactInfo": "Contact",
+    "followUs": "Follow us",
+    "licensedAs": "{legalName} is licensed and regulated by the {regulator} as a {category}.",
+    "licenseLink": "License {number} — verify on the FSC register",
+    "riskWarningTitle": "Risk Warning",
+    "riskWarningPlaceholder": "Trading foreign exchange on margin carries a high level of risk, and may not be suitable for all investors. The high degree of leverage can work against you as well as for you. Before deciding to trade foreign exchange you should carefully consider your investment objectives, level of experience, and risk appetite. The possibility exists that you could sustain a loss of some or all of your initial investment and therefore you should not invest money that you cannot afford to lose. You should be aware of all the risks associated with foreign exchange trading, and seek advice from an independent financial advisor if you have any doubts.",
+    "restrictedTitle": "Restricted Jurisdictions",
+    "restrictedPlaceholder": "Thaurus Ltd does not provide services to residents of certain jurisdictions including and not limited to the United States, Cuba, Iran, Sudan, Syria and North Korea, Albania, Barbados, Burkina Faso, Cambodia, Cayman Islands, Gibraltar, Haiti, Jamaica, Morocco, Panama, Philippines, Democratic Republic of the Congo, Senegal, South Sudan, Uganda, Yemen, Jordan, Mali, Mozambique, Tanzania, Turkey. The information on this website is not suitable for distribution or use by anyone in any of the aforementioned jurisdictions. Such distribution or use may violate local laws or regulations. Please note that this list is not exhaustive and is subject to change; it may be updated from time to time without prior notice. It is the client's sole responsibility to remain informed of the current list of restricted jurisdictions before using our services.",
+    "copyright": "© {year} {legalName}. All rights reserved."
+  }
+}
