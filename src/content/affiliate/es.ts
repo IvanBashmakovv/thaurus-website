@@ -3,24 +3,13 @@ import type { AffiliateData } from "./types";
 export const es: AffiliateData = {
   cta: "Hazte socio",
   nav: {
-    menus: [
-      { label: "IB Partners", items: [
-        { label: "Programa IB", href: "/affiliate-program/ib-partners" },
-        { label: "Plan de comisiones", href: "/affiliate-program/ib-commission-plan" },
-        { label: "Programa de fidelidad", href: "/affiliate-program/loyalty-program" },
-      ] },
-      { label: "Afiliados", items: [
-        { label: "Programa de afiliados", href: "/affiliate-program/affiliates" },
-        { label: "Plan de comisiones", href: "/affiliate-program/affiliates-commission-plan" },
-        { label: "Herramientas de marketing", href: "/affiliate-program/marketing-tools" },
-      ] },
-      { label: "Recursos", items: [
-        { label: "FAQ", href: "/affiliate-program#faq" },
-        { label: "Blog", href: "/blog" },
-      ] },
+    items: [
+      { label: "IB Partners", href: "#programs" },
+      { label: "Afiliados", href: "#programs" },
+      { label: "Por qué Thaurus", href: "#answers" },
+      { label: "Cómo funciona", href: "#steps" },
+      { label: "FAQ", href: "#faq" },
     ],
-    why: { label: "Por qué Thaurus", href: "/affiliate-program/why-thaurus" },
-    signIn: "Acceso socios",
     language: "Idioma",
   },
   hero: {
@@ -51,9 +40,9 @@ export const es: AffiliateData = {
     compare: "Comparar los dos modelos",
     cards: [
       { program: "ib", name: "IB Partners", model: "Revenue share",
-        bullets: ["Comisión sobre el volumen operado por tus clientes", "Se paga mientras el cliente opere", { todo: "tasa de revenue share" }], learnMoreHref: "/affiliate-program/ib-partners" },
+        bullets: ["Comisión sobre el volumen operado por tus clientes", "Se paga mientras el cliente opere", { todo: "tasa de revenue share" }], learnMoreHref: "#comparison" },
       { program: "affiliates", name: "Affiliates", model: "CPA",
-        bullets: ["Importe fijo por cliente cualificado", "Se paga una vez, tras el primer depósito y la primera operación", { todo: "importe CPA por cliente" }], learnMoreHref: "/affiliate-program/affiliates" },
+        bullets: ["Importe fijo por cliente cualificado", "Se paga una vez, tras el primer depósito y la primera operación", { todo: "importe CPA por cliente" }], learnMoreHref: "#comparison" },
     ],
   },
   promote: {

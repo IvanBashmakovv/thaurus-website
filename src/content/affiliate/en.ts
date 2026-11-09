@@ -5,24 +5,13 @@ import type { AffiliateData } from "./types";
 export const en: AffiliateData = {
   cta: "Become a partner",
   nav: {
-    menus: [
-      { label: "IB Partners", items: [
-        { label: "IB Program", href: "/affiliate-program/ib-partners" },
-        { label: "Commission plan", href: "/affiliate-program/ib-commission-plan" },
-        { label: "Loyalty Program", href: "/affiliate-program/loyalty-program" },
-      ] },
-      { label: "Affiliates", items: [
-        { label: "Affiliate Program", href: "/affiliate-program/affiliates" },
-        { label: "Commission plan", href: "/affiliate-program/affiliates-commission-plan" },
-        { label: "Marketing tools", href: "/affiliate-program/marketing-tools" },
-      ] },
-      { label: "Resources", items: [
-        { label: "FAQ", href: "/affiliate-program#faq" },
-        { label: "Blog", href: "/blog" },
-      ] },
+    items: [
+      { label: "IB Partners", href: "#programs" },
+      { label: "Affiliates", href: "#programs" },
+      { label: "Why Thaurus", href: "#answers" },
+      { label: "How it works", href: "#steps" },
+      { label: "FAQ", href: "#faq" },
     ],
-    why: { label: "Why choose Thaurus", href: "/affiliate-program/why-thaurus" },
-    signIn: "Partner login",
     language: "Language",
   },
   hero: {
@@ -61,7 +50,7 @@ export const en: AffiliateData = {
           "Paid for as long as the client trades",
           { todo: "revenue share rate" },
         ],
-        learnMoreHref: "/affiliate-program/ib-partners",
+        learnMoreHref: "#comparison",
       },
       {
         program: "affiliates",
@@ -72,7 +61,7 @@ export const en: AffiliateData = {
           "Paid once, after the first deposit and trade",
           { todo: "CPA amount per client" },
         ],
-        learnMoreHref: "/affiliate-program/affiliates",
+        learnMoreHref: "#comparison",
       },
     ],
   },

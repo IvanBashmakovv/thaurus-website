@@ -10,7 +10,7 @@ export default async function PartnerLayout({ children, params }: { children: Re
   const a = getAffiliate(locale);
   return (
     <div className="flex min-h-dvh flex-col">
-      <LandingHeader menus={a.nav.menus} why={a.nav.why} cta={a.cta} languageLabel={a.nav.language} />
+      <LandingHeader items={a.nav.items} cta={a.cta} languageLabel={a.nav.language} />
       <main className="flex-1">{children}</main>
       <LandingFooter />
     </div>
