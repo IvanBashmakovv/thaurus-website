@@ -95,6 +95,17 @@ export const routes = {
   affiliate: "/affiliate-program",
 } as const;
 
+/** Partner site sub-pages (mirrors the structure of a full partner program site). */
+export const partnerPages = {
+  ib: "/affiliate-program/ib-partners",
+  ibPlan: "/affiliate-program/ib-commission-plan",
+  loyalty: "/affiliate-program/loyalty-program",
+  affiliates: "/affiliate-program/affiliates",
+  affiliatesPlan: "/affiliate-program/affiliates-commission-plan",
+  marketing: "/affiliate-program/marketing-tools",
+  why: "/affiliate-program/why-thaurus",
+} as const;
+
 export const markets = [
   { slug: "forex-trading-platform", label: "Forex" },
   { slug: "stock-trading-platform", label: "Stocks" },

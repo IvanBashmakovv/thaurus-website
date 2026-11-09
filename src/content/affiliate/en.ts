@@ -5,13 +5,24 @@ import type { AffiliateData } from "./types";
 export const en: AffiliateData = {
   cta: "Become a partner",
   nav: {
-    items: [
-      { label: "IB Partners", href: "#programs" },
-      { label: "Affiliates", href: "#programs" },
-      { label: "Answers", href: "#answers" },
-      { label: "How it works", href: "#steps" },
-      { label: "FAQ", href: "#faq" },
+    menus: [
+      { label: "IB Partners", items: [
+        { label: "IB Program", href: "/affiliate-program/ib-partners" },
+        { label: "Commission plan", href: "/affiliate-program/ib-commission-plan" },
+        { label: "Loyalty Program", href: "/affiliate-program/loyalty-program" },
+      ] },
+      { label: "Affiliates", items: [
+        { label: "Affiliate Program", href: "/affiliate-program/affiliates" },
+        { label: "Commission plan", href: "/affiliate-program/affiliates-commission-plan" },
+        { label: "Marketing tools", href: "/affiliate-program/marketing-tools" },
+      ] },
+      { label: "Resources", items: [
+        { label: "FAQ", href: "/affiliate-program#faq" },
+        { label: "Blog", href: "/blog" },
+      ] },
     ],
+    why: { label: "Why choose Thaurus", href: "/affiliate-program/why-thaurus" },
+    signIn: "Partner login",
     language: "Language",
   },
   hero: {
@@ -42,6 +53,7 @@ export const en: AffiliateData = {
     compare: "Compare the two models",
     cards: [
       {
+        program: "ib",
         name: "IB Partners",
         model: "Revenue share",
         bullets: [
@@ -49,8 +61,10 @@ export const en: AffiliateData = {
           "Paid for as long as the client trades",
           { todo: "revenue share rate" },
         ],
+        learnMoreHref: "/affiliate-program/ib-partners",
       },
       {
+        program: "affiliates",
         name: "Affiliates",
         model: "CPA",
         bullets: [
@@ -58,6 +72,7 @@ export const en: AffiliateData = {
           "Paid once, after the first deposit and trade",
           { todo: "CPA amount per client" },
         ],
+        learnMoreHref: "/affiliate-program/affiliates",
       },
     ],
   },
@@ -77,11 +92,12 @@ export const en: AffiliateData = {
     eyebrow: "Straight answers",
     title: "What partners ask first",
     items: [
-      { art: "trusted", title: "Who pays you", body: "Thaurus Ltd, licensed and regulated by the FSC Mauritius (GB22200432). 8th Floor, Hennessy Tower, Pope Hennessy Street, Port Louis." },
-      { art: "payouts", title: "How you get paid", body: { todo: "payout methods, minimum and schedule" } },
       { art: "commissions", title: "What you earn", body: "Revenue share on trading volume, or a fixed CPA per qualified client. Your rate is confirmed in writing when your account is approved." },
-      { art: "tracking", title: "How you track it", body: { todo: "confirm the partner dashboard: links, clicks, sign-ups, active traders" } },
+      { art: "payouts", title: "How you get paid", body: { todo: "payout methods, minimum and schedule" } },
+      { art: "withdrawals", title: "How you withdraw", body: "Commission sits in your partner account until you withdraw it." },
+      { art: "trusted", title: "Who pays you", body: "Thaurus Ltd, licensed and regulated by the FSC Mauritius (GB22200432). 8th Floor, Hennessy Tower, Pope Hennessy Street, Port Louis." },
       { art: "creatives", title: "What you promote with", body: { todo: "confirm creatives: banners, landing pages, logo pack" } },
+      { art: "tracking", title: "How you track it", body: { todo: "confirm the partner dashboard: links, clicks, sign-ups, active traders" } },
       { art: "support", title: "Who helps you", body: "The partnerships team at support@thaurus.com, or by phone on +44 121 225 8747 and +230 5297 0374." },
     ],
   },

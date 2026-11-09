@@ -14,11 +14,11 @@ import { Card } from "@/components/ui/Card";
 import { Icon } from "@/components/ui/Icon";
 import { Stars } from "@/components/ui/Stars";
 import { BrandImage } from "@/components/ui/BrandImage";
-import { AuroraBackground } from "@/components/ui/AuroraBackground";
+import { ShaderBackdrop } from "@/components/affiliate/ShaderBackdrop";
 import { FaqAccordion, FaqJsonLd } from "@/components/ui/FaqAccordion";
 import { buttonClasses } from "@/components/ui/Button";
-import { LandingHeader } from "@/components/affiliate/LandingHeader";
-import { LandingFooter } from "@/components/affiliate/LandingFooter";
+import { ProgramLogo } from "@/components/affiliate/ProgramLogo";
+import { Link } from "@/i18n/navigation";
 import { PhotoMosaic } from "@/components/affiliate/PhotoMosaic";
 import { Reveal } from "@/components/affiliate/Reveal";
 import { CountUp } from "@/components/affiliate/CountUp";
@@ -68,14 +68,11 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
   const a = getAffiliate(locale);
 
   return (
-    <div id="top" className="flex min-h-dvh flex-col">
+    <div id="top">
       <FaqJsonLd items={a.faq.items} />
-      <LandingHeader items={a.nav.items} cta={a.cta} ctaHref={APPLY} languageLabel={a.nav.language} />
-
-      <main className="flex-1">
         {/* 1. HERO */}
         <section className="tone-dark relative overflow-hidden bg-surface pt-32 pb-16 text-fg sm:pt-40 sm:pb-20">
-          <AuroraBackground className="opacity-70" />
+          <ShaderBackdrop tone="dark" />
           <Container className="relative z-10">
             <div className="rise mx-auto max-w-3xl text-center">
               <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">{a.hero.title}</h1>
@@ -163,11 +160,11 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
         {/* 6. STRAIGHT ANSWERS */}
         <Section id="answers" className="scroll-mt-20">
           <Reveal><SectionHeading eyebrow={a.answers.eyebrow} title={a.answers.title} /></Reveal>
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-6">
             {a.answers.items.map((b, i) => (
-              <Reveal key={b.title} delay={(i % 3) * 0.1}>
+              <Reveal key={b.title} delay={(i % 3) * 0.1} className={i < 4 ? "lg:col-span-3" : "lg:col-span-2"}>
                 <Card className="h-full">
-                  <BenefitArt kind={b.art} />
+                  <BenefitArt kind={b.art} tall={i < 4} />
                   <h3 className="mt-5 text-lg font-semibold text-fg">{b.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-fg-muted"><T v={b.body} /></p>
                 </Card>
@@ -181,7 +178,7 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
           <Reveal><SectionHeading eyebrow={a.comparison.eyebrow} title={a.comparison.title} /></Reveal>
           <Reveal delay={0.15} className="mt-14 overflow-x-auto">
             <table className="w-full min-w-[640px] border-collapse text-sm">
-              <thead><tr className="border-b border-edge"><th className="py-4 pe-4" /><th className="py-4 px-4 text-start text-lg font-bold text-fg">{a.comparison.colA}</th><th className="py-4 px-4 text-start text-lg font-bold text-fg">{a.comparison.colB}</th></tr></thead>
+              <thead><tr className="border-b border-edge"><th className="py-4 pe-4" /><th className="py-4 px-4 text-start"><ProgramLogo program="ib" /><span className="sr-only">{a.comparison.colA}</span></th><th className="py-4 px-4 text-start"><ProgramLogo program="affiliates" /><span className="sr-only">{a.comparison.colB}</span></th></tr></thead>
               <tbody>
                 {a.comparison.rows.map((r) => (
                   <tr key={r.label} className="border-b border-edge align-top">
@@ -240,31 +237,30 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
         </Section>
 
         {/* 11. APPLY — the on-page form, with the verbatim risk line next to the CTA */}
-        <section id="apply" className={cn(GRADIENT, "scroll-mt-20 py-20 sm:py-28")}>
-          <Container>
+        <section id="apply" className="tone-light relative scroll-mt-20 overflow-hidden py-20 text-fg sm:py-28">
+          <ShaderBackdrop tone="light" speed={0.8} />
+          <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.65),transparent_60%)]" />
+          <Container className="relative z-10">
             <Reveal><SectionHeading eyebrow={a.apply.eyebrow} title={a.apply.title} subtitle={a.apply.sub} /></Reveal>
             <Reveal delay={0.15} className="mx-auto mt-12 max-w-3xl"><ApplyForm copy={a.apply} /></Reveal>
             <p className="mx-auto mt-6 max-w-3xl text-center text-xs text-fg-faint">{a.apply.risk}</p>
           </Container>
         </section>
-      </main>
-
-      <LandingFooter />
     </div>
   );
 }
 
 function ProgramCardView({ card, cta, compare }: { card: ProgramCard; cta: string; compare: string }) {
   return (
-    <div className="flex h-full flex-col rounded-card border border-white/15 bg-white/5 p-8 backdrop-blur transition-transform duration-300 hover:-translate-y-1">
-      <p className="text-lg font-semibold text-fg">{card.name}</p>
-      <p className="mt-1 text-sm text-fg-muted">{card.model}</p>
+    <div className="tone-light flex h-full flex-col rounded-card bg-white p-8 text-fg shadow-card transition-transform duration-300 hover:-translate-y-1">
+      <ProgramLogo program={card.program} />
+      <p className={cn("mt-5 text-2xl font-bold", card.program === "ib" ? "text-[#6a46f0]" : "text-[#2f6bd6]")}>{card.model}</p>
       <ul className="mt-6 space-y-3">
         {card.bullets.map((b, i) => <li key={i} className="flex items-start gap-3 text-sm text-fg-muted"><Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-primary-hover" /><span><T v={b} /></span></li>)}
       </ul>
-      <div className="mt-8 flex flex-wrap items-center gap-4">
-        <Cta>{cta}</Cta>
-        <a href="#comparison" className="inline-flex min-h-11 items-center text-sm text-fg-muted underline-offset-4 hover:text-fg hover:underline">{compare}</a>
+      <div className="mt-8 flex flex-col gap-3">
+        <Cta className="w-full">{cta}</Cta>
+        <Link href={card.learnMoreHref} className={buttonClasses({ variant: "outline", className: "w-full whitespace-nowrap" })}>{compare}</Link>
       </div>
     </div>
   );

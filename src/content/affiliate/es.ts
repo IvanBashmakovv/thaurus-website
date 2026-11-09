@@ -3,13 +3,24 @@ import type { AffiliateData } from "./types";
 export const es: AffiliateData = {
   cta: "Hazte socio",
   nav: {
-    items: [
-      { label: "IB Partners", href: "#programs" },
-      { label: "Afiliados", href: "#programs" },
-      { label: "Respuestas", href: "#answers" },
-      { label: "Cómo funciona", href: "#steps" },
-      { label: "FAQ", href: "#faq" },
+    menus: [
+      { label: "IB Partners", items: [
+        { label: "Programa IB", href: "/affiliate-program/ib-partners" },
+        { label: "Plan de comisiones", href: "/affiliate-program/ib-commission-plan" },
+        { label: "Programa de fidelidad", href: "/affiliate-program/loyalty-program" },
+      ] },
+      { label: "Afiliados", items: [
+        { label: "Programa de afiliados", href: "/affiliate-program/affiliates" },
+        { label: "Plan de comisiones", href: "/affiliate-program/affiliates-commission-plan" },
+        { label: "Herramientas de marketing", href: "/affiliate-program/marketing-tools" },
+      ] },
+      { label: "Recursos", items: [
+        { label: "FAQ", href: "/affiliate-program#faq" },
+        { label: "Blog", href: "/blog" },
+      ] },
     ],
+    why: { label: "Por qué Thaurus", href: "/affiliate-program/why-thaurus" },
+    signIn: "Acceso socios",
     language: "Idioma",
   },
   hero: {
@@ -39,10 +50,10 @@ export const es: AffiliateData = {
     title: "Elige el modelo para tu tráfico",
     compare: "Comparar los dos modelos",
     cards: [
-      { name: "IB Partners", model: "Revenue share",
-        bullets: ["Comisión sobre el volumen operado por tus clientes", "Se paga mientras el cliente opere", { todo: "tasa de revenue share" }] },
-      { name: "Affiliates", model: "CPA",
-        bullets: ["Importe fijo por cliente cualificado", "Se paga una vez, tras el primer depósito y la primera operación", { todo: "importe CPA por cliente" }] },
+      { program: "ib", name: "IB Partners", model: "Revenue share",
+        bullets: ["Comisión sobre el volumen operado por tus clientes", "Se paga mientras el cliente opere", { todo: "tasa de revenue share" }], learnMoreHref: "/affiliate-program/ib-partners" },
+      { program: "affiliates", name: "Affiliates", model: "CPA",
+        bullets: ["Importe fijo por cliente cualificado", "Se paga una vez, tras el primer depósito y la primera operación", { todo: "importe CPA por cliente" }], learnMoreHref: "/affiliate-program/affiliates" },
     ],
   },
   promote: {
@@ -61,11 +72,12 @@ export const es: AffiliateData = {
     eyebrow: "Respuestas directas",
     title: "Lo primero que preguntan los socios",
     items: [
-      { art: "trusted", title: "Quién te paga", body: "Thaurus Ltd, autorizada y regulada por la FSC de Mauricio (GB22200432). 8th Floor, Hennessy Tower, Pope Hennessy Street, Port Louis." },
-      { art: "payouts", title: "Cómo cobras", body: { todo: "métodos de pago, mínimo y calendario" } },
       { art: "commissions", title: "Qué ganas", body: "Revenue share sobre el volumen operado o un CPA fijo por cliente cualificado. Tu tasa se confirma por escrito al aprobar tu cuenta." },
-      { art: "tracking", title: "Cómo lo sigues", body: { todo: "confirmar panel de socio: enlaces, clics, registros, traders activos" } },
+      { art: "payouts", title: "Cómo cobras", body: { todo: "métodos de pago, mínimo y calendario" } },
+      { art: "withdrawals", title: "Cómo retiras", body: "La comisión queda en tu cuenta de socio hasta que la retiras." },
+      { art: "trusted", title: "Quién te paga", body: "Thaurus Ltd, autorizada y regulada por la FSC de Mauricio (GB22200432). 8th Floor, Hennessy Tower, Pope Hennessy Street, Port Louis." },
       { art: "creatives", title: "Con qué promocionas", body: { todo: "confirmar creatividades: banners, landings, pack de logos" } },
+      { art: "tracking", title: "Cómo lo sigues", body: { todo: "confirmar panel de socio: enlaces, clics, registros, traders activos" } },
       { art: "support", title: "Quién te ayuda", body: "El equipo de socios en support@thaurus.com, o por teléfono en +44 121 225 8747 y +230 5297 0374." },
     ],
   },
