@@ -39,7 +39,7 @@ export function LandingHeader({ items, cta, languageLabel }: { items: Item[]; ct
 
           <div className="flex items-center gap-2">
             <LocaleSwitcher label={languageLabel} />
-            <a href="#apply" className={buttonClasses({ variant: "primary", size: "md", className: "hidden whitespace-nowrap px-4 text-sm md:inline-flex" })}>{cta}</a>
+            <a href="#apply" className={buttonClasses({ variant: "primary", size: "md", className: "hidden whitespace-nowrap px-4 text-sm md:inline-flex" }).replace("rounded-pill", "rounded-md")}>{cta}</a>
             <button type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-xl text-fg lg:hidden" aria-expanded={mobile} aria-label="Menu" onClick={() => setMobile((v) => !v)}>
               <span className="relative block h-4 w-5">
                 <span className={cn("absolute left-0 block h-0.5 w-5 bg-current transition-all", mobile ? "top-1.5 rotate-45" : "top-0")} />
@@ -56,7 +56,7 @@ export function LandingHeader({ items, cta, languageLabel }: { items: Item[]; ct
           <Container>
             <div className="flex flex-col gap-1 py-5">
               {items.map((it) => <a key={it.label} href={it.href} onClick={() => setMobile(false)} className="rounded-xl px-3 py-3 text-base font-medium text-fg/90 hover:bg-fg/5">{it.label}</a>)}
-              <a href="#apply" onClick={() => setMobile(false)} className={buttonClasses({ variant: "primary", size: "lg", className: "mt-3 w-full whitespace-nowrap" })}>{cta}</a>
+              <a href="#apply" onClick={() => setMobile(false)} className={buttonClasses({ variant: "primary", size: "lg", className: "mt-3 w-full whitespace-nowrap" }).replace("rounded-pill", "rounded-md")}>{cta}</a>
             </div>
           </Container>
         </div>

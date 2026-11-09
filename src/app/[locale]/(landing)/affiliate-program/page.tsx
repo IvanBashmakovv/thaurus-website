@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 /* Reference button geometry: rectangular, 6px radius. */
-const primary = (extra = "") => buttonClasses({ variant: "primary", size: "md", className: cn("rounded-md whitespace-nowrap", extra) });
+const primary = (extra = "") => buttonClasses({ variant: "primary", size: "md", className: cn("whitespace-nowrap", extra) }).replace("rounded-pill", "rounded-md");
 const secondary = (extra = "") => cn("inline-flex h-11 items-center justify-center whitespace-nowrap rounded-md bg-[#eceef5] px-6 text-sm font-semibold text-[#131228] transition-colors hover:bg-[#dfe2ee]", extra);
 
 export default async function AffiliateLanding({ params }: { params: Promise<{ locale: string }> }) {
