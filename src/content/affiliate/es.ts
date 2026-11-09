@@ -15,31 +15,21 @@ export const es: AffiliateData = {
   },
   velocity: "Empieza ahora con Thaurus",
   hero: {
+    badge: "Programa de socios",
     title: "Maximiza tus ganancias",
     sub: "Gana comisiones competitivas de revenue share o CPA por referir traders a Thaurus.",
-    pills: [
-      { icon: "percent", text: "Revenue share o CPA" },
-      { icon: "clock", text: "Pagos rápidos" },
-      { icon: "shield", text: "Bróker con licencia" },
+    features: [
+      { icon: "percent", title: "Revenue share o CPA", sub: "Dos modelos de comisión" },
+      { icon: "clock", title: "Pagos rápidos", sub: "Opciones de pago regulares" },
+      { icon: "shield", title: "Bróker con licencia", sub: "FSC Mauricio · GB22200432" },
     ],
   },
   trusted: {
-    eyebrow: "Confían en nosotros",
-    headline: "120+ apariciones en medios",
-    headlineSub: "en todo el mundo",
-    badges: [
-      { label: "Investing.com", sub: "Destacados", logo: "/photos/investing.webp" },
-      { label: "MSN", sub: "Destacados", logo: "/photos/msn.webp" },
-      { label: "MEXC", sub: "Destacados", logo: "/photos/mexc.webp" },
-      { label: "Digital Journal", sub: "Destacados", logo: "/photos/digital-journal.webp" },
-      { label: "Trustpilot 4.4", sub: "Valoración de traders", mark: "trustpilot" },
-      { label: "Google 4.6", sub: "Valoración de traders", mark: "google" },
-      { label: "WikiFX", sub: "Bróker verificado", mark: "wikifx" },
-      { label: "FSC Mauricio", sub: "Licencia GB22200432", mark: "fsc" },
-    ],
-    stats: [
-      { icon: "verified", value: "4.4 / 5", label: "Valoración en Trustpilot" },
-      { icon: "globe", value: "4.6 / 5", label: "Valoración en Google" },
+    label: "Confían en nosotros",
+    tiles: [
+      { value: "120+", label: "Apariciones en medios" },
+      { value: "4.4/5", label: "Valoración Trustpilot" },
+      { value: "4.6/5", label: "Valoración Google" },
     ],
   },
   programs: {

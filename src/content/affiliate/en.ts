@@ -15,31 +15,21 @@ export const en: AffiliateData = {
   },
   velocity: "Start now with Thaurus",
   hero: {
+    badge: "Partnership program",
     title: "Maximize your earnings",
     sub: "Earn competitive revenue share or CPA commission for referring traders to Thaurus.",
-    pills: [
-      { icon: "percent", text: "Revenue share or CPA" },
-      { icon: "clock", text: "Fast payouts" },
-      { icon: "shield", text: "Licensed broker" },
+    features: [
+      { icon: "percent", title: "Revenue share or CPA", sub: "Two commission models" },
+      { icon: "clock", title: "Fast payouts", sub: "Regular payout options" },
+      { icon: "shield", title: "Licensed broker", sub: "FSC Mauritius · GB22200432" },
     ],
   },
   trusted: {
-    eyebrow: "Trusted by",
-    headline: "120+ media features",
-    headlineSub: "worldwide",
-    badges: [
-      { label: "Investing.com", sub: "Featured", logo: "/photos/investing.webp" },
-      { label: "MSN", sub: "Featured", logo: "/photos/msn.webp" },
-      { label: "MEXC", sub: "Featured", logo: "/photos/mexc.webp" },
-      { label: "Digital Journal", sub: "Featured", logo: "/photos/digital-journal.webp" },
-      { label: "Trustpilot 4.4", sub: "Rated by traders", mark: "trustpilot" },
-      { label: "Google 4.6", sub: "Rated by traders", mark: "google" },
-      { label: "WikiFX", sub: "Verified broker", mark: "wikifx" },
-      { label: "FSC Mauritius", sub: "Licence GB22200432", mark: "fsc" },
-    ],
-    stats: [
-      { icon: "verified", value: "4.4 / 5", label: "Trustpilot rating" },
-      { icon: "globe", value: "4.6 / 5", label: "Google rating" },
+    label: "Trusted by",
+    tiles: [
+      { value: "120+", label: "Media features" },
+      { value: "4.4/5", label: "Trustpilot rating" },
+      { value: "4.6/5", label: "Google rating" },
     ],
   },
   programs: {

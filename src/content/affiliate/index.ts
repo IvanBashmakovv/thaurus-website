@@ -7,7 +7,7 @@ import type { AffiliateData } from "./types";
 import { en } from "./en";
 import { es } from "./es";
 
-export type { AffiliateData, ProgramCard, Testimonial, Badge, Program } from "./types";
+export type { AffiliateData, ProgramCard, Testimonial, Program } from "./types";
 
 const DATA: Record<Locale, AffiliateData> = { en, es, pt: en, th: en, ar: en };
 
