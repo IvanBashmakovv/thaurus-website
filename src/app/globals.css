@@ -379,3 +379,5 @@ html { scroll-behavior: smooth; }
 .art-phone { animation: art-phone .8s cubic-bezier(.22,1,.36,1) both; }
 .art-float { animation: float-y 3.4s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .art-slide, .art-pop, .art-grow, .art-grow-x, .art-phone, .art-float { animation: none; } }
+
+.text-outline { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.55); }

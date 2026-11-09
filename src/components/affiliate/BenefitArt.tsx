@@ -1,6 +1,5 @@
 import type { CSSProperties } from "react";
 import { Icon } from "@/components/ui/Icon";
-import { Logo } from "@/components/Logo";
 
 export type ArtKind =
   | "commissions" | "payouts" | "withdrawals" | "trusted"
@@ -16,8 +15,8 @@ export function BenefitArt({ kind, tall = false }: { kind: ArtKind; tall?: boole
       return (
         <Scene className={H}>
           <span className="art-float select-none bg-gradient-to-br from-primary-hover to-[#6f74c4] bg-clip-text text-[9rem] font-black leading-none text-transparent opacity-40">%</span>
-          <Chip className="right-6 top-6 bg-[#6a46f0] text-white shadow-[0_10px_30px_-8px_rgba(106,70,240,.8)]" style={d(0.2)}>+ Revenue share</Chip>
-          <Chip className="bottom-8 left-6 bg-[#1f9d63] text-white shadow-[0_10px_30px_-8px_rgba(31,157,99,.8)]" style={d(1)}>Paid</Chip>
+          <Chip className="right-6 top-6 bg-[#6a46f0] text-white shadow-[0_10px_30px_-8px_rgba(106,70,240,.8)]" style={d(0.2)}>+$2,985</Chip>
+          <Chip className="bottom-8 left-6 bg-[#1f9d63] text-white shadow-[0_10px_30px_-8px_rgba(31,157,99,.8)]" style={d(1)}>Paid ✓</Chip>
         </Scene>
       );
     case "payouts":
@@ -90,7 +89,7 @@ function TxRow({ style }: { style?: CSSProperties }) {
     <div style={style} className="art-slide flex items-center gap-3 rounded-xl border border-white/10 bg-[#1b1a35] px-4 py-3 shadow-card">
       <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-primary-hover text-xs font-bold text-white">T</span>
       <span className="flex-1 text-start text-xs leading-tight"><span className="block font-semibold text-white">Thaurus · Payout</span><span className="block text-white/50">1h ago</span></span>
-      <span className="text-end text-xs leading-tight"><span className="block font-semibold text-[#2ecc8a]">Sent ✓</span><span className="block text-white/50">USD</span></span>
+      <span className="text-end text-xs leading-tight"><span className="block font-semibold tabular-nums text-[#2ecc8a]">+$2,985.00</span><span className="block text-white/50">USD</span></span>
     </div>
   );
 }
@@ -102,8 +101,9 @@ function Phone() {
       <div className="h-full w-full overflow-hidden rounded-[1.8rem] bg-gradient-to-b from-[#2a2e6d] to-[#131228] p-3 pt-9">
         <div className="mb-3 flex items-center justify-between px-1 text-[10px] text-white/70"><span>9:41</span><span>●●●</span></div>
         <div className="rounded-xl bg-white/95 p-3 text-[11px] leading-tight text-[#131228] shadow-card">
-          <div className="flex items-center gap-2"><Logo className="h-3" /><span className="text-[9px] text-black/50">now</span></div>
+          <div className="flex items-center justify-between"><span className="text-[10px] font-extrabold tracking-[0.18em] text-[#131228]">THAURUS</span><span className="text-[9px] text-black/50">now</span></div>
           <p className="mt-1.5 font-semibold">Withdrawal approved.</p>
+          <p className="text-base font-bold tabular-nums text-[#131228]">$2,985.00</p>
         </div>
       </div>
     </div>

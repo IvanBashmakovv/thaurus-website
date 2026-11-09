@@ -4,60 +4,39 @@ import { setRequestLocale } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { buildMetadata } from "@/lib/seo";
 import { routes } from "@/lib/site";
-import { photos } from "@/lib/photos";
-import { pressLogos } from "@/content/home";
-import { getAffiliate, type ProgramCard } from "@/content/affiliate";
-import type { Txt } from "@/content/affiliate/types";
+import { getAffiliate } from "@/content/affiliate";
+import type { Badge, ProgramCard } from "@/content/affiliate/types";
 import { Container } from "@/components/ui/Container";
 import { Section, SectionHeading } from "@/components/ui/Section";
-import { Card } from "@/components/ui/Card";
 import { Icon } from "@/components/ui/Icon";
-import { Stars } from "@/components/ui/Stars";
-import { BrandImage } from "@/components/ui/BrandImage";
-import { HeroShapes } from "@/components/affiliate/HeroShapes";
 import { FaqAccordion, FaqJsonLd } from "@/components/ui/FaqAccordion";
 import { buttonClasses } from "@/components/ui/Button";
-import { ProgramLogo } from "@/components/affiliate/ProgramLogo";
-import { Link } from "@/i18n/navigation";
-import { PhotoMosaic } from "@/components/affiliate/PhotoMosaic";
-import { Reveal } from "@/components/affiliate/Reveal";
-import { CountUp } from "@/components/affiliate/CountUp";
 import { Marquee } from "@/components/affiliate/Marquee";
 import { BenefitArt } from "@/components/affiliate/BenefitArt";
 import { ApplyForm } from "@/components/affiliate/ApplyForm";
+import { ProgramLogo } from "@/components/affiliate/ProgramLogo";
+import { HeroShapes } from "@/components/affiliate/HeroShapes";
+import { VelocityText } from "@/components/affiliate/VelocityText";
 import { cn } from "@/lib/cn";
 
 const PATH = routes.affiliate;
 const APPLY = "#apply";
-const GRADIENT =
-  "tone-dark relative overflow-hidden text-fg bg-[linear-gradient(135deg,#131228_0%,#262a63_55%,#42478b_100%)]";
+const PANEL = "tone-dark relative bg-[#1b1a35] text-fg";
+const GRADIENT = "tone-dark relative overflow-hidden text-fg bg-[linear-gradient(90deg,#5b3fd6_0%,#42478b_55%,#2f6bd6_100%)]";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   return buildMetadata({
     locale: locale as Locale,
-    title: "Partner Program: Revenue Share and CPA",
-    description:
-      "Refer traders to Thaurus Ltd, an FSC Mauritius licensed broker on MetaTrader 5, and earn revenue share or CPA commission. Apply on this page.",
+    title: "Partnership Program: Revenue Share and CPA",
+    description: "Join the Thaurus Partnership Program. Earn revenue share or CPA commission by referring traders to Thaurus Ltd, an FSC Mauritius licensed broker on MetaTrader 5.",
     path: PATH,
   });
 }
 
-/** Visible marker for a fact Thaurus still has to confirm. Never ships as final copy. */
-function Todo({ children }: { children: React.ReactNode }) {
-  return (
-    <span title="To be confirmed by Thaurus" className="text-fg-faint underline decoration-dotted decoration-fg-faint/60 underline-offset-4">{children}</span>
-  );
-}
-function T({ v }: { v: Txt }) {
-  return typeof v === "string" ? <>{v}</> : <Todo>{v.todo}</Todo>;
-}
-function Cta({ children, size = "md", className }: { children: React.ReactNode; size?: "sm" | "md" | "lg"; className?: string }) {
-  return <a href={APPLY} className={buttonClasses({ variant: "primary", size, className: cn("whitespace-nowrap", className) })}>{children}</a>;
-}
-function Pill({ children }: { children: React.ReactNode }) {
-  return <span className="inline-flex items-center gap-2 whitespace-nowrap rounded-pill border border-fg/15 bg-fg/5 px-4 py-2 text-sm text-fg backdrop-blur">{children}</span>;
-}
+/* Reference button geometry: rectangular, 6px radius. */
+const primary = (extra = "") => buttonClasses({ variant: "primary", size: "md", className: cn("rounded-md whitespace-nowrap", extra) });
+const secondary = (extra = "") => cn("inline-flex h-11 items-center justify-center whitespace-nowrap rounded-md bg-[#eceef5] px-6 text-sm font-semibold text-[#131228] transition-colors hover:bg-[#dfe2ee]", extra);
 
 export default async function AffiliateLanding({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -67,197 +46,216 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
   return (
     <div id="top">
       <FaqJsonLd items={a.faq.items} />
-        {/* 1. HERO */}
-        <section className="tone-dark relative overflow-hidden bg-surface pt-32 pb-12 text-fg sm:pt-40 sm:pb-14 lg:min-h-[590px]">
-          <div aria-hidden className="absolute inset-0 bg-[linear-gradient(135deg,#0e0d22_0%,#1c1f52_55%,#3b3f8a_100%)]" />
-          <HeroShapes />
-          <Container className="relative z-10">
-            <div className="rise mx-auto max-w-4xl text-center">
-              <h1 className="text-[2.5rem] font-medium leading-[1.08] tracking-tight sm:text-6xl lg:text-[4.5rem]">{a.hero.title}</h1>
-              <p className="mx-auto mt-5 max-w-2xl text-base text-fg-muted sm:text-lg">{a.hero.sub}</p>
-              <div className="mt-7"><Cta size="lg">{a.cta}</Cta></div>
-            </div>
-            <ul className="mx-auto mt-12 flex max-w-4xl flex-wrap items-center justify-center gap-x-10 gap-y-3 border-t border-white/10 pt-6">
-              {a.hero.pills.map((p, i) => (
-                <li
-                  key={p.text}
-                  className="rise flex items-center gap-2.5 whitespace-nowrap text-sm font-medium text-fg-muted"
-                  style={{ animationDelay: `${0.25 + i * 0.1}s` }}
-                >
-                  <Icon name={p.icon} className="h-5 w-5 text-[#8f94e8]" />{p.text}
-                </li>
-              ))}
-            </ul>
-          </Container>
-        </section>
 
-        {/* 2. PRESS MARQUEE */}
-        <section className="tone-dark border-y border-edge bg-surface py-8 text-fg">
-          <p className="mb-6 text-center text-xs font-semibold uppercase tracking-[0.3em] text-fg-faint">{a.press.eyebrow}</p>
-          <Marquee duration={28}>
-            {pressLogos.map((l) => (
-              <Image key={l.name} src={l.src} alt={l.name} width={l.width} height={l.height} className="mx-8 h-7 w-auto object-contain opacity-70" />
+      {/* 1. HERO */}
+      <section className="tone-dark relative overflow-hidden bg-surface pt-32 pb-10 text-fg sm:pt-40 sm:pb-12 lg:min-h-[590px]">
+        <div aria-hidden className="absolute inset-0 bg-[linear-gradient(135deg,#0e0d22_0%,#1c1f52_55%,#3b3f8a_100%)]" />
+        <HeroShapes />
+        <Container className="relative z-10">
+          <div className="rise mx-auto max-w-4xl text-center">
+            <h1 className="text-[2.5rem] font-medium leading-[1.08] tracking-tight sm:text-6xl lg:text-[4.5rem]">{a.hero.title}</h1>
+            <p className="mx-auto mt-5 max-w-2xl text-base text-fg-muted sm:text-lg">{a.hero.sub}</p>
+            <div className="mt-7"><a href={APPLY} className={primary("h-12 px-7 text-base")}>{a.cta}</a></div>
+          </div>
+          <ul className="mx-auto mt-12 flex max-w-5xl flex-wrap items-center justify-center gap-x-14 gap-y-3 border-t border-white/10 pt-6">
+            {a.hero.pills.map((p, i) => (
+              <li key={p.text} className="rise flex items-center gap-2.5 whitespace-nowrap text-sm font-medium text-fg" style={{ animationDelay: `${0.25 + i * 0.1}s` }}>
+                <Icon name={p.icon} className="h-5 w-5 text-[#8f94e8]" />{p.text}
+              </li>
             ))}
+          </ul>
+        </Container>
+      </section>
+
+      {/* 2. TRUSTED BY — panel, big number, badge marquee, two stats */}
+      <section className={cn(PANEL, "py-16 sm:py-20")}>
+        <Container>
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.3em] text-fg-faint">{a.trusted.eyebrow}</p>
+          <h2 className="mx-auto mt-4 max-w-3xl text-center text-4xl font-medium leading-tight sm:text-5xl">
+            {a.trusted.headline}<br />{a.trusted.headlineSub}
+          </h2>
+        </Container>
+        <div className="mt-12 [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
+          <Marquee duration={60}>
+            {a.trusted.badges.map((b) => <BadgeTile key={b.label} b={b} />)}
           </Marquee>
-        </section>
-
-        {/* 3. TRUST — photo wall + real numbers */}
-        <section className="tone-dark relative overflow-hidden bg-surface text-fg">
-          <div className="relative h-64 sm:h-80"><PhotoMosaic /></div>
-          <Container className="relative z-10 -mt-10 pb-20 sm:pb-24">
-            <Reveal>
-              <p className="text-center text-xs font-semibold uppercase tracking-[0.3em] text-fg-faint">{a.trusted.eyebrow}</p>
-              <h2 className="mx-auto mt-4 max-w-2xl text-center text-3xl font-bold sm:text-4xl">{a.trusted.title}</h2>
-            </Reveal>
-            <dl className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-6 lg:grid-cols-4">
-              {a.trusted.stats.map((s, i) => (
-                <Reveal key={s.label} delay={i * 0.1} className="text-center">
-                  <dd className="text-3xl font-bold tabular-nums text-fg sm:text-4xl">
-                    {s.num !== undefined ? <CountUp to={s.num} decimals={s.decimals} suffix={s.suffix} /> : s.text}
-                  </dd>
-                  <dt className="mt-1 text-sm text-fg-muted">{s.label}</dt>
-                </Reveal>
-              ))}
-            </dl>
-            <Reveal delay={0.3} className="mt-10 flex flex-wrap items-center justify-center gap-3">
-              <Pill><span className="flex h-5 w-5 items-center justify-center rounded bg-[#00B67A] text-[10px] text-white">★</span><b>Trustpilot</b><Stars rating={4.4} /><b className="tabular-nums">4.4</b></Pill>
-              <Pill><b>Google</b><Stars rating={4.6} /><b className="tabular-nums">4.6</b></Pill>
-              <Pill><b>{a.trusted.wikifx}</b><span className="rounded-pill bg-success/20 px-2 py-0.5 text-xs font-semibold text-success">{a.trusted.verified}</span></Pill>
-            </Reveal>
-          </Container>
-        </section>
-
-        {/* 4. TWO PROGRAMS — gradient band */}
-        <section id="programs" className={cn(GRADIENT, "scroll-mt-20 py-20 sm:py-28")}>
-          <Container>
-            <Reveal><SectionHeading eyebrow={a.programs.eyebrow} title={a.programs.title} /></Reveal>
-            <div className="mt-14 grid gap-6 md:grid-cols-2">
-              {a.programs.cards.map((c, i) => <Reveal key={c.name} delay={i * 0.12}><ProgramCardView card={c} cta={a.cta} compare={a.programs.compare} /></Reveal>)}
-            </div>
-          </Container>
-        </section>
-
-        {/* 5. WHAT YOU PROMOTE — split with the real MT5 screenshot */}
-        <Section tone="light">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
-            <Reveal>
-              <SectionHeading align="start" eyebrow={a.promote.eyebrow} title={a.promote.title} subtitle={a.promote.body} />
-              <ul className="mt-8 space-y-3">
-                {a.promote.facts.map((f) => (
-                  <li key={f} className="flex items-start gap-3 text-fg-muted"><Icon name="check" className="mt-1 h-4 w-4 shrink-0 text-primary-hover" />{f}</li>
-                ))}
-              </ul>
-              <div className="mt-8"><Cta>{a.cta}</Cta></div>
-            </Reveal>
-            <Reveal delay={0.15}>
-              <BrandImage photo={photos.mt5Devices} className="aspect-[4/3]" sizes="(max-width: 1024px) 100vw, 50vw" />
-            </Reveal>
-          </div>
-        </Section>
-
-        {/* 6. STRAIGHT ANSWERS */}
-        <Section id="answers" className="scroll-mt-20">
-          <Reveal><SectionHeading eyebrow={a.answers.eyebrow} title={a.answers.title} /></Reveal>
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-6">
-            {a.answers.items.map((b, i) => (
-              <Reveal key={b.title} delay={(i % 3) * 0.1} className={i < 4 ? "lg:col-span-3" : "lg:col-span-2"}>
-                <Card className="h-full">
-                  <BenefitArt kind={b.art} tall={i < 4} />
-                  <h3 className="mt-5 text-lg font-semibold text-fg">{b.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-fg-muted"><T v={b.body} /></p>
-                </Card>
-              </Reveal>
+        </div>
+        <Container>
+          <div className="mx-auto mt-14 grid max-w-2xl grid-cols-2 divide-x divide-white/10">
+            {a.trusted.stats.map((s) => (
+              <div key={s.label} className="flex flex-col items-center px-4 text-center">
+                <Icon name={s.icon} className="h-7 w-7 text-[#8f94e8]" />
+                <div className="mt-3 text-2xl font-semibold tabular-nums sm:text-3xl">{s.value}</div>
+                <div className="mt-1 text-sm text-fg-muted">{s.label}</div>
+              </div>
             ))}
           </div>
-        </Section>
+        </Container>
+      </section>
 
-        {/* 7. COMPARISON */}
-        <Section id="comparison" tone="light" className="scroll-mt-20">
-          <Reveal><SectionHeading eyebrow={a.comparison.eyebrow} title={a.comparison.title} /></Reveal>
-          <Reveal delay={0.15} className="mt-14 overflow-x-auto">
+      {/* 2b. SCROLL-VELOCITY TEXT STRIP */}
+      <section className="tone-dark overflow-hidden border-y border-white/5 bg-[#0f0e24] text-fg">
+        <VelocityText text={a.velocity} />
+      </section>
+
+      {/* 3. CHOOSE YOUR PARTNERSHIP — gradient band, two white cards */}
+      <section id="programs" className={cn(GRADIENT, "scroll-mt-20 py-20 sm:py-24")}>
+        <Container>
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.3em] text-white/70">{a.programs.eyebrow}</p>
+          <h2 className="mx-auto mt-4 max-w-3xl text-center text-3xl font-medium leading-tight text-white sm:text-5xl">{a.programs.title}</h2>
+          <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-2">
+            {a.programs.cards.map((c) => <ProgramCardView key={c.program} card={c} learnMore={a.learnMore} />)}
+          </div>
+        </Container>
+      </section>
+
+      {/* 4. KEY BENEFITS — 2 + 2 + 3 */}
+      <Section id="benefits" className="scroll-mt-20 bg-[#0f0e24]">
+        <SectionHeading eyebrow={a.benefits.eyebrow} title={a.benefits.title} />
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
+          {a.benefits.items.map((b, i) => (
+            <div key={b.title} className={cn("rounded-2xl border border-white/8 bg-[#171634] p-6", i < 4 ? "lg:col-span-3" : "lg:col-span-2")} style={{ animationDelay: `${(i % 3) * 0.08}s` }}>
+              <BenefitArt kind={b.art} tall={i < 4} />
+              <h3 className="mt-5 text-lg font-semibold text-fg">{b.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-fg-muted">{b.body}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* 5. COMPARISON — white, lock-up headers, two CTAs */}
+      <section id="comparison" className="tone-light relative scroll-mt-20 bg-white py-20 text-fg sm:py-24">
+        <Container>
+          <SectionHeading eyebrow={a.comparison.eyebrow} title={a.comparison.title} />
+          <div className="mx-auto mt-14 max-w-5xl overflow-x-auto">
             <table className="w-full min-w-[640px] border-collapse text-sm">
-              <thead><tr className="border-b border-edge"><th className="py-4 pe-4" /><th className="py-4 px-4 text-start"><ProgramLogo program="ib" /><span className="sr-only">{a.comparison.colA}</span></th><th className="py-4 px-4 text-start"><ProgramLogo program="affiliates" /><span className="sr-only">{a.comparison.colB}</span></th></tr></thead>
+              <thead>
+                <tr className="border-b border-[#131228]/10">
+                  <th className="w-40 py-4 pe-4" />
+                  <th className="py-4 px-4 text-start"><ProgramLogo program="ib" /></th>
+                  <th className="py-4 px-4 text-start"><ProgramLogo program="affiliates" /></th>
+                </tr>
+              </thead>
               <tbody>
                 {a.comparison.rows.map((r) => (
-                  <tr key={r.label} className="border-b border-edge align-top">
-                    <th scope="row" className="py-5 pe-4 text-start font-medium text-fg-faint">{r.label}</th>
-                    <td className="py-5 px-4 text-fg-muted"><T v={r.a} /></td><td className="py-5 px-4 text-fg-muted"><T v={r.b} /></td>
+                  <tr key={r.label} className="border-b border-[#131228]/10 align-top">
+                    <th scope="row" className="py-6 pe-4 text-start font-medium text-fg-faint">{r.label}</th>
+                    <td className="py-6 px-4 text-fg-muted">{r.a}</td>
+                    <td className="py-6 px-4 text-fg-muted">{r.b}</td>
                   </tr>
                 ))}
+                <tr>
+                  <td />
+                  <td className="py-8 px-4"><a href={APPLY} className={primary()}>{a.comparison.ctaA}</a></td>
+                  <td className="py-8 px-4"><a href={APPLY} className={primary()}>{a.comparison.ctaB}</a></td>
+                </tr>
               </tbody>
             </table>
-          </Reveal>
-          <Reveal delay={0.2} className="mt-10 text-center"><Cta size="lg">{a.cta}</Cta></Reveal>
-        </Section>
+          </div>
+        </Container>
+      </section>
 
-        {/* 8. FOUR STEPS */}
-        <Section id="steps" className="scroll-mt-20">
-          <Reveal><SectionHeading eyebrow={a.steps.eyebrow} title={a.steps.title} /></Reveal>
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {/* 6. HOW IT WORKS — light grey, 2 x 2 */}
+      <section id="steps" className="tone-light relative scroll-mt-20 bg-[#f4f5fb] py-20 text-fg sm:py-24">
+        <Container>
+          <SectionHeading eyebrow={a.steps.eyebrow} title={a.steps.title} subtitle={a.steps.sub} />
+          <div className="mx-auto mt-12 grid max-w-5xl gap-5 md:grid-cols-2">
             {a.steps.items.map((s, i) => (
-              <Reveal key={s.title} delay={i * 0.1}>
-                <Card className="h-full">
-                  <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary-hover">{a.steps.stepLabel} {i + 1}</p>
-                  <h3 className="mt-3 text-xl font-semibold text-fg">{s.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-fg-muted">{s.body}</p>
-                </Card>
-              </Reveal>
+              <div key={s.title} className="rounded-2xl bg-white p-7 shadow-[0_1px_2px_rgba(19,18,40,.06)]">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-fg-faint">{a.steps.stepLabel} {i + 1}</p>
+                <h3 className="mt-3 text-xl font-semibold text-fg">{s.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-fg-muted">{s.body}</p>
+              </div>
             ))}
           </div>
-        </Section>
+        </Container>
+      </section>
 
-        {/* 9. PARTNER QUOTES — marquee when real quotes exist, otherwise an explicit pending marker */}
-        <Section tone="light">
-          <Reveal><SectionHeading eyebrow={a.testimonials.eyebrow} title={a.testimonials.title} /></Reveal>
-          {a.testimonials.items.length > 0 ? (
-            <div className="mt-12 [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
-              <Marquee duration={45}>
-                {a.testimonials.items.map((t, i) => (
-                  <figure key={i} className="w-80 shrink-0 rounded-card border border-edge bg-surface-2/70 p-6">
-                    <blockquote className="text-sm leading-relaxed text-fg-muted">{t.quote}</blockquote>
-                    <figcaption className="mt-5 text-sm font-semibold text-fg">{t.author}{t.role && <span className="block text-xs font-normal text-fg-faint">{t.role}</span>}</figcaption>
-                  </figure>
-                ))}
-              </Marquee>
-            </div>
-          ) : (
-            <Reveal delay={0.1} className="mx-auto mt-12 max-w-2xl rounded-card border border-edge bg-surface-2/70 p-8 text-center text-sm text-fg-muted">
-              <p>{a.testimonials.pending}</p>
-            </Reveal>
-          )}
-        </Section>
+      {/* 7. TESTIMONIALS — dark; marquee once real quotes exist */}
+      <Section className="bg-[#0f0e24]">
+        <SectionHeading eyebrow={a.testimonials.eyebrow} title={a.testimonials.title} />
+        {a.testimonials.items.length > 0 ? (
+          <div className="mt-12 [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
+            <Marquee duration={90}>
+              {a.testimonials.items.map((t, i) => (
+                <figure key={i} className={cn("w-80 shrink-0 rounded-2xl p-6", i % 2 ? "bg-[linear-gradient(135deg,#5b3fd6,#2f6bd6)] text-white" : "border border-white/8 bg-[#171634]")}>
+                  <blockquote className="text-sm leading-relaxed">{t.quote}</blockquote>
+                  <figcaption className="mt-5 text-sm font-semibold">{t.author}{t.role && <span className="block text-xs font-normal opacity-70">{t.role}</span>}</figcaption>
+                </figure>
+              ))}
+            </Marquee>
+          </div>
+        ) : (
+          <p className="mx-auto mt-10 max-w-xl rounded-2xl border border-white/8 bg-[#171634] p-8 text-center text-sm text-fg-muted">{a.testimonials.pending}</p>
+        )}
+        <p className="mx-auto mt-8 max-w-2xl text-center text-xs text-fg-faint">{a.testimonials.note}</p>
+      </Section>
 
-        {/* 10. FAQ */}
-        <Section id="faq" className="scroll-mt-20">
-          <Reveal><SectionHeading eyebrow={a.faq.eyebrow} title={a.faq.title} /></Reveal>
-          <Reveal delay={0.15} className="mt-12"><FaqAccordion items={a.faq.items} /></Reveal>
-        </Section>
+      {/* 8. FAQ */}
+      <section id="faq" className="tone-light relative scroll-mt-20 bg-[#f4f5fb] py-20 text-fg sm:py-24">
+        <Container>
+          <SectionHeading eyebrow={a.faq.eyebrow} title={a.faq.title} />
+          <div className="mt-12"><FaqAccordion items={a.faq.items} /></div>
+        </Container>
+      </section>
 
-        {/* 11. APPLY — the on-page form, with the verbatim risk line next to the CTA */}
-        <section id="apply" className="tone-light relative scroll-mt-20 overflow-hidden py-20 text-fg sm:py-28">
-          <div aria-hidden className="absolute inset-0 bg-[linear-gradient(135deg,#8a8fc9_0%,#c9cdf0_45%,#eef1fb_100%)]" />
-          <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.7),transparent_60%)]" />
-          <Container className="relative z-10">
-            <Reveal><SectionHeading eyebrow={a.apply.eyebrow} title={a.apply.title} subtitle={a.apply.sub} /></Reveal>
-            <Reveal delay={0.15} className="mx-auto mt-12 max-w-3xl"><ApplyForm copy={a.apply} /></Reveal>
-            <p className="mx-auto mt-6 max-w-3xl text-center text-xs text-fg-faint">{a.apply.risk}</p>
-          </Container>
-        </section>
+      {/* 9. START EARNING TODAY — gradient band, two cards, application form */}
+      <section id="apply" className={cn(GRADIENT, "scroll-mt-20 py-20 sm:py-24")}>
+        <Container>
+          <h2 className="text-center text-3xl font-medium text-white sm:text-5xl">{a.finalCta.title}</h2>
+          <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-2">
+            {a.finalCta.cards.map((c) => (
+              <div key={c.program} className="tone-light rounded-2xl bg-white p-8 text-fg">
+                <ProgramLogo program={c.program} />
+                <h3 className="mt-6 text-xl font-semibold">{c.headline}</h3>
+                <p className="mt-1 text-sm text-fg-muted">{c.model}</p>
+                <div className="mt-6 flex flex-col gap-3">
+                  <a href="#apply-form" className={primary("w-full")}>{c.cta}</a>
+                  <a href="#comparison" className={secondary("w-full")}>{a.learnMore}</a>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div id="apply-form" className="tone-light mx-auto mt-10 max-w-3xl scroll-mt-24 rounded-2xl bg-white p-6 text-fg sm:p-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-fg-faint">{a.apply.eyebrow}</p>
+            <h3 className="mt-2 text-2xl font-semibold">{a.apply.title}</h3>
+            <p className="mt-1 text-sm text-fg-muted">{a.apply.sub}</p>
+            <div className="mt-6"><ApplyForm copy={a.apply} /></div>
+          </div>
+          <p className="mx-auto mt-6 max-w-3xl text-center text-xs text-white/70">{a.apply.risk}</p>
+        </Container>
+      </section>
     </div>
   );
 }
 
-function ProgramCardView({ card, cta, compare }: { card: ProgramCard; cta: string; compare: string }) {
+function BadgeTile({ b }: { b: Badge }) {
   return (
-    <div className="tone-light flex h-full flex-col rounded-card bg-white p-8 text-fg shadow-card transition-transform duration-300 hover:-translate-y-1">
+    <div className="flex h-20 w-44 shrink-0 items-center gap-3 rounded-xl border border-white/10 bg-[#131228] px-4">
+      {b.logo ? (
+        <Image src={b.logo} alt={b.label} width={120} height={32} className="h-6 w-auto max-w-[7rem] object-contain brightness-0 invert" />
+      ) : (
+        <>
+          {b.mark === "trustpilot" && <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-sm bg-[#00B67A] text-sm text-white">★</span>}
+          {b.mark === "google" && <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white text-sm font-bold text-[#4285F4]">G</span>}
+          {b.mark === "wikifx" && <Icon name="verified" className="h-7 w-7 shrink-0 text-[#2ecc8a]" />}
+          {b.mark === "fsc" && <Icon name="shield" className="h-7 w-7 shrink-0 text-[#8f94e8]" />}
+          <span className="leading-tight"><span className="block text-sm font-semibold text-fg">{b.label}</span>{b.sub && <span className="block text-[11px] text-fg-faint">{b.sub}</span>}</span>
+        </>
+      )}
+    </div>
+  );
+}
+
+function ProgramCardView({ card, learnMore }: { card: ProgramCard; learnMore: string }) {
+  return (
+    <div className="tone-light flex h-full flex-col rounded-2xl bg-white p-8 text-fg">
       <ProgramLogo program={card.program} />
-      <p className={cn("mt-5 text-2xl font-bold", card.program === "ib" ? "text-[#6a46f0]" : "text-[#2f6bd6]")}>{card.model}</p>
-      <ul className="mt-6 space-y-3">
-        {card.bullets.map((b, i) => <li key={i} className="flex items-start gap-3 text-sm text-fg-muted"><Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-primary-hover" /><span><T v={b} /></span></li>)}
-      </ul>
+      <p className={cn("mt-6 text-[1.75rem] font-medium leading-tight", card.program === "ib" ? "text-[#6a46f0]" : "text-[#2f6bd6]")}>{card.model}</p>
+      <ul className="mt-5 list-disc space-y-2 ps-5 text-sm text-fg-muted">{card.bullets.map((b) => <li key={b}>{b}</li>)}</ul>
       <div className="mt-8 flex flex-col gap-3">
-        <Cta className="w-full">{cta}</Cta>
-        <Link href={card.learnMoreHref} className={buttonClasses({ variant: "outline", className: "w-full whitespace-nowrap" })}>{compare}</Link>
+        <a href={APPLY} className={primary("w-full")}>{card.cta}</a>
+        <a href="#comparison" className={secondary("w-full")}>{learnMore}</a>
       </div>
     </div>
   );
