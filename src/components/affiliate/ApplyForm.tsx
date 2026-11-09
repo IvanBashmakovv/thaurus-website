@@ -28,7 +28,7 @@ export type ApplyCopy = {
 };
 
 const input =
-  "w-full rounded-xl border border-edge bg-surface px-4 py-2.5 text-fg placeholder:text-fg-faint focus-visible:outline-2 focus-visible:outline-primary-hover";
+  "w-full rounded-xl border border-edge bg-surface px-4 py-2.5 text-base text-fg placeholder:text-fg-faint focus-visible:outline-2 focus-visible:outline-primary-hover";
 
 export function ApplyForm({ copy }: { copy: ApplyCopy }) {
   const [state, action, pending] = useActionState<ApplyState, FormData>(applyPartner, { ok: false });

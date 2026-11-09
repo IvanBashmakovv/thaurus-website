@@ -46,7 +46,7 @@ export function LocaleSwitcher({ label }: { label: string }) {
         aria-expanded={open}
         aria-label={label}
         disabled={isPending}
-        className="flex h-9 items-center gap-1.5 rounded-pill border border-fg/15 px-3 text-sm text-fg-muted transition-colors hover:border-fg/40 hover:text-fg"
+        className="flex h-11 items-center gap-1.5 rounded-pill lg:h-9 border border-fg/15 px-3 text-sm text-fg-muted transition-colors hover:border-fg/40 hover:text-fg"
       >
         <span aria-hidden>🌐</span>
         <span className="uppercase">{active}</span>

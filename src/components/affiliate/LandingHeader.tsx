@@ -72,7 +72,7 @@ export function LandingHeader({
             <a
               href={ctaHref}
               onClick={(e) => go(e, ctaHref)}
-              className={buttonClasses({ variant: "primary", size: "sm", className: "whitespace-nowrap px-3 text-xs sm:px-4 sm:text-sm" })}
+              className={buttonClasses({ variant: "primary", size: "md", className: "whitespace-nowrap px-4 text-sm" })}
             >
               {cta}
             </a>

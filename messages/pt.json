@@ -43,9 +43,9 @@
     "licensedAs": "A {legalName} é licenciada e regulada pela {regulator} como {category}.",
     "licenseLink": "Licença {number} — verifique no registro da FSC",
     "riskWarningTitle": "Aviso de risco",
-    "riskWarningPlaceholder": "(Aguardando o texto de conformidade completo.)",
+    "riskWarningPlaceholder": "Trading foreign exchange on margin carries a high level of risk, and may not be suitable for all investors. The high degree of leverage can work against you as well as for you. Before deciding to trade foreign exchange you should carefully consider your investment objectives, level of experience, and risk appetite. The possibility exists that you could sustain a loss of some or all of your initial investment and therefore you should not invest money that you cannot afford to lose. You should be aware of all the risks associated with foreign exchange trading, and seek advice from an independent financial advisor if you have any doubts.",
     "restrictedTitle": "Jurisdições restritas",
-    "restrictedPlaceholder": "(Aguardando a lista completa.)",
+    "restrictedPlaceholder": "Thaurus Ltd does not provide services to residents of certain jurisdictions including and not limited to the United States, Cuba, Iran, Sudan, Syria and North Korea, Albania, Barbados, Burkina Faso, Cambodia, Cayman Islands, Gibraltar, Haiti, Jamaica, Morocco, Panama, Philippines, Democratic Republic of the Congo, Senegal, South Sudan, Uganda, Yemen, Jordan, Mali, Mozambique, Tanzania, Turkey. The information on this website is not suitable for distribution or use by anyone in any of the aforementioned jurisdictions. Such distribution or use may violate local laws or regulations. Please note that this list is not exhaustive and is subject to change; it may be updated from time to time without prior notice. It is the client's sole responsibility to remain informed of the current list of restricted jurisdictions before using our services.",
     "copyright": "© {year} {legalName}. Todos os direitos reservados."
   }
 }

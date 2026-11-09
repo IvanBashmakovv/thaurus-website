@@ -16,6 +16,7 @@ const paths: string[] = [
   routes.faq,
   routes.blog,
   routes.contact,
+  routes.affiliate,
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

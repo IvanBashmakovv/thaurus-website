@@ -39,7 +39,11 @@ export function buildMetadata({
   noIndex = false,
 }: BuildMetadataArgs): Metadata {
   const canonical = localizedUrl(locale, path);
-  // When `images` is omitted, the opengraph-image.tsx file convention supplies it.
+  // Default to the locale-level generated OG image. A page-level openGraph object
+  // replaces the layout one wholesale, so without this inner pages lose their image.
+  // localizedUrl honours the as-needed prefix: /opengraph-image for the default
+  // locale, /es/opengraph-image for the rest. A prefixed default-locale URL would 307.
+  const ogImages = images ?? [localizedUrl(locale, "/opengraph-image")];
   return {
     title,
     description,
@@ -58,13 +62,13 @@ export function buildMetadata({
       title,
       description,
       locale,
-      ...(images ? { images } : {}),
+      images: ogImages,
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      ...(images ? { images } : {}),
+      images: ogImages,
     },
   };
 }

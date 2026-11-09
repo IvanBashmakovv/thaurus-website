@@ -162,7 +162,7 @@ export function Header() {
             {/* Mobile toggle */}
             <button
               type="button"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-xl text-fg lg:hidden"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-xl text-fg lg:hidden"
               aria-expanded={mobileOpen}
               aria-controls="mobile-menu"
               aria-label={mobileOpen ? t("closeMenu") : t("openMenu")}
