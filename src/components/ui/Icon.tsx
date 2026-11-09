@@ -9,6 +9,12 @@ import {
   CandlestickChart,
   Globe,
   Lock,
+  Percent,
+  Clock,
+  Wallet,
+  Images,
+  BarChart3,
+  Users,
   type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/cn";
@@ -24,7 +30,13 @@ export type IconName =
   | "verified"
   | "chart"
   | "globe"
-  | "lock";
+  | "lock"
+  | "percent"
+  | "clock"
+  | "wallet"
+  | "creatives"
+  | "tracking"
+  | "users";
 
 const map: Record<IconName, LucideIcon> = {
   support: Headset,
@@ -37,6 +49,12 @@ const map: Record<IconName, LucideIcon> = {
   chart: CandlestickChart,
   globe: Globe,
   lock: Lock,
+  percent: Percent,
+  clock: Clock,
+  wallet: Wallet,
+  creatives: Images,
+  tracking: BarChart3,
+  users: Users,
 };
 
 export function Icon({

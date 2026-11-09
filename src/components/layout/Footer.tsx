@@ -19,6 +19,7 @@ export function Footer() {
     { label: tn("company"), href: routes.company },
     { label: tn("license"), href: routes.license },
     { label: tn("accountTypes"), href: routes.accountTypes },
+    { label: tn("affiliate"), href: routes.affiliate },
     { label: tn("faq"), href: routes.faq },
     { label: tn("blog"), href: routes.blog },
     { label: tn("contact"), href: routes.contact },

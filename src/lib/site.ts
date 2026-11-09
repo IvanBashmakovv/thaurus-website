@@ -92,6 +92,7 @@ export const routes = {
   blog: "/blog",
   contact: "/contact",
   toolsHub: "/tools-and-resources",
+  affiliate: "/affiliate-program",
 } as const;
 
 export const markets = [

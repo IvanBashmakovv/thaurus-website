@@ -13,6 +13,7 @@
     "faq": "Perguntas frequentes",
     "blog": "Blog",
     "contact": "Contato",
+    "affiliate": "Afiliados",
     "login": "Entrar",
     "openAccount": "Abrir conta",
     "openMenu": "Abrir menu",
@@ -33,7 +34,8 @@
     "ctaSecondary": "Saiba mais sobre nós"
   },
   "footer": {
-    "tagline": "Uma corretora multiativos regulada, baseada na transparência. Negocie Forex, ações, futuros, CFDs e commodities no MetaTrader 5.",
+    "tagline": "A Thaurus é uma empresa de trading completa que permite aos traders acessar uma ampla gama de instrumentos financeiros e negociá-los por meio de nossas plataformas.",
+    "tagline2": "Com suas ferramentas e recursos avançados, a Thaurus oferece aos traders os recursos de que precisam para tomar decisões informadas e executar operações com eficiência.",
     "pages": "Páginas",
     "legal": "Jurídico",
     "contactInfo": "Contato",

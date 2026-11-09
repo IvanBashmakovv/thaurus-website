@@ -13,6 +13,7 @@
     "faq": "Preguntas frecuentes",
     "blog": "Blog",
     "contact": "Contacto",
+    "affiliate": "Afiliados",
     "login": "Iniciar sesión",
     "openAccount": "Abrir cuenta",
     "openMenu": "Abrir menú",
@@ -33,7 +34,8 @@
     "ctaSecondary": "Conoce más sobre nosotros"
   },
   "footer": {
-    "tagline": "Un bróker multiactivo regulado basado en la transparencia. Opera Forex, acciones, futuros, CFD y materias primas en MetaTrader 5.",
+    "tagline": "Thaurus es una compañía de trading integral que permite a los traders acceder a una amplia gama de instrumentos financieros y operarlos a través de nuestras plataformas.",
+    "tagline2": "Con sus herramientas y funciones avanzadas, Thaurus ofrece a los traders los recursos que necesitan para tomar decisiones informadas y ejecutar operaciones con eficiencia.",
     "pages": "Páginas",
     "legal": "Legal",
     "contactInfo": "Contacto",

@@ -131,6 +131,7 @@ export function Header() {
               wide
             />
             <NavLink href={routes.accountTypes} label={t("accountsShort")} />
+            <NavLink href={routes.affiliate} label={t("affiliate")} />
             <NavLink href={routes.blog} label={t("blog")} />
             <NavLink href={routes.faq} label={t("faq")} />
             <NavLink href={routes.contact} label={t("contact")} />
@@ -186,6 +187,7 @@ export function Header() {
               <MobileGroup label={t("markets")} items={marketsMenu} onNavigate={() => setMobileOpen(false)} />
               <MobileGroup label={t("tools")} items={toolsMenu} onNavigate={() => setMobileOpen(false)} />
               <MobileLink href={routes.accountTypes} label={t("accountTypes")} onNavigate={() => setMobileOpen(false)} />
+              <MobileLink href={routes.affiliate} label={t("affiliate")} onNavigate={() => setMobileOpen(false)} />
               <MobileLink href={routes.blog} label={t("blog")} onNavigate={() => setMobileOpen(false)} />
               <MobileLink href={routes.faq} label={t("faq")} onNavigate={() => setMobileOpen(false)} />
               <MobileLink href={routes.contact} label={t("contact")} onNavigate={() => setMobileOpen(false)} />
