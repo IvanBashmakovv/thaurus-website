@@ -6,8 +6,6 @@ import { Figtree } from "next/font/google";
 import { routing, isRtl, type Locale } from "@/i18n/routing";
 import { siteConfig } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
 import "../globals.css";
 
@@ -73,9 +71,7 @@ export default async function LocaleLayout({
         <div className="grain-overlay" aria-hidden />
         <NextIntlClientProvider messages={messages}>
           <OrganizationJsonLd />
-          <Header />
-          <main className="relative flex-1">{children}</main>
-          <Footer />
+          {children}
         </NextIntlClientProvider>
       </body>
     </html>
