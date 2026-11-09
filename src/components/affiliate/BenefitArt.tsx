@@ -27,7 +27,7 @@ export function BenefitArt({ kind, tall = false }: { kind: ArtKind; tall?: boole
         </Scene>
       );
     case "withdrawals":
-      return <Scene className={H}><Phone /></Scene>;
+      return <Scene className={H}><BalanceCard /></Scene>;
     case "trusted":
       return (
         <Scene className={H}>
@@ -94,30 +94,18 @@ function TxRow({ style }: { style?: CSSProperties }) {
   );
 }
 
-function Phone() {
+function BalanceCard() {
   return (
-    <div className="art-phone relative h-[21rem] w-[10.25rem] rounded-[2.6rem] bg-[linear-gradient(160deg,#2a2b3d,#0b0a16_55%,#1b1b2c)] p-[3px] shadow-[0_40px_80px_-24px_rgba(0,0,0,.85),0_0_0_1px_rgba(255,255,255,.06)]">
-      <div className="relative h-full w-full overflow-hidden rounded-[2.4rem] bg-[#07060f]">
-        <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_20%_0%,#3d3f8f_0%,#1b1c48_45%,#0c0b1e_100%)]" />
-        <div className="absolute left-1/2 top-2.5 h-[22px] w-[74px] -translate-x-1/2 rounded-full bg-black" />
-        <div className="relative px-4 pt-14 text-center text-white">
-          <div className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/60">Monday 9 June</div>
-          <div className="mt-0.5 text-[2.6rem] font-light leading-none tabular-nums">9:41</div>
-        </div>
-        <div className="relative mt-5 space-y-2 px-2.5">
-          <div className="rounded-2xl bg-white/92 p-3 text-[#131228] shadow-[0_12px_30px_-12px_rgba(0,0,0,.6)] backdrop-blur">
-            <div className="flex items-center justify-between">
-              <span className="flex items-center gap-1.5"><span className="flex h-4 w-4 items-center justify-center rounded-[5px] bg-[#42478b] text-[8px] font-black text-white">T</span><span className="text-[10px] font-semibold tracking-wide">THAURUS</span></span>
-              <span className="text-[9px] text-black/45">now</span>
-            </div>
-            <p className="mt-1.5 text-[11px] font-semibold leading-tight">Withdrawal approved</p>
-            <p className="text-[15px] font-bold leading-tight tabular-nums">$2,985.00</p>
-          </div>
-          <div className="mx-2 h-9 rounded-2xl bg-white/25" />
-          <div className="mx-4 h-7 rounded-2xl bg-white/12" />
-        </div>
-        <div className="pointer-events-none absolute inset-0 rounded-[2.4rem] bg-[linear-gradient(115deg,rgba(255,255,255,.14),rgba(255,255,255,0)_38%)]" />
+    <div className="art-slide w-[17rem] rounded-2xl border border-white/10 bg-[linear-gradient(160deg,#2a2d6a,#141331)] p-5 text-start shadow-[0_30px_60px_-30px_rgba(0,0,0,.8)]">
+      <div className="flex items-center justify-between text-[11px] text-white/55">
+        <span>Available balance</span>
+        <span className="rounded-full bg-[#2ecc8a]/15 px-2 py-0.5 font-semibold text-[#2ecc8a]">Completed</span>
       </div>
+      <div className="mt-2 text-3xl font-bold tabular-nums text-white">$2,985.00</div>
+      <div className="mt-4 flex items-center justify-between rounded-xl bg-white/6 px-3 py-2.5 text-xs text-white/70">
+        <span>Withdrawal · USD</span><span className="font-semibold text-white">Approved ✓</span>
+      </div>
+      <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-white/10"><div className="art-grow-x h-full w-full rounded-full bg-gradient-to-r from-[#7c5cff] to-[#2ecc8a]" /></div>
     </div>
   );
 }
