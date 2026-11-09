@@ -18,7 +18,7 @@ import { Reveal } from "@/components/affiliate/Reveal";
 import { CountUp } from "@/components/affiliate/CountUp";
 import { BenefitArt } from "@/components/affiliate/BenefitArt";
 import { ProgramLogo } from "@/components/affiliate/ProgramLogo";
-import { ShaderBackdrop } from "@/components/affiliate/ShaderBackdrop";
+import { HeroShapes } from "@/components/affiliate/HeroShapes";
 import { cn } from "@/lib/cn";
 
 const APPLY = `${routes.affiliate}#apply`;
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 function Todo({ children }: { children: React.ReactNode }) {
-  return <span className="inline-flex items-center gap-1 rounded-md border border-dashed border-amber-400/70 bg-amber-400/10 px-1.5 py-0.5 text-xs font-medium text-amber-300"><span className="font-bold">TODO</span>{children}</span>;
+  return <span title="To be confirmed by Thaurus" className="text-fg-faint underline decoration-dotted decoration-fg-faint/60 underline-offset-4">{children}</span>;
 }
 const T = ({ v }: { v: Txt }) => (typeof v === "string" ? <>{v}</> : <Todo>{v.todo}</Todo>);
 
@@ -53,7 +53,8 @@ export default async function PartnerSubPage({ params }: { params: Promise<{ loc
       {faq && faq.kind === "faq" && <FaqJsonLd items={faq.items} />}
 
       <section className="tone-dark relative overflow-hidden bg-surface pt-32 pb-16 text-fg sm:pt-40 sm:pb-20">
-        <ShaderBackdrop tone="dark" speed={0.7} />
+        <div aria-hidden className="absolute inset-0 bg-[linear-gradient(135deg,#0e0d22_0%,#1c1f52_55%,#3b3f8a_100%)]" />
+        <HeroShapes />
         <Container className="relative z-10">
           <div className="rise max-w-3xl">
             {p.hero.program ? <ProgramLogo program={p.hero.program} size="lg" /> : <p className="text-xs font-semibold uppercase tracking-[0.3em] text-fg-faint">{p.hero.eyebrow}</p>}

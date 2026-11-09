@@ -2,14 +2,13 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { photos } from "@/lib/photos";
 import { cn } from "@/lib/cn";
 
 /**
- * Wall of real Thaurus brand photos. Tiles fade in staggered, then a
- * "spotlight" travels across the grid (one tile lit and scaled, the rest
- * dimmed) — the same device the reference landing uses for its partner wall.
+ * Wall of real Thaurus brand photos. Tiles are in the HTML and rise in with a
+ * CSS stagger; a spotlight then travels across the grid (progressive
+ * enhancement — without JS the wall simply shows).
  */
 const TILES = [
   photos.team, photos.portrait, photos.office, photos.appPhone,
@@ -31,29 +30,17 @@ export function PhotoMosaic({ className }: { className?: string }) {
         {TILES.map((p, i) => {
           const lit = i === active;
           return (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.94 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: i * 0.05 }}
-              className={cn(
-                "relative aspect-square overflow-hidden rounded-2xl bg-surface-2 transition-all duration-700 ease-out",
-                i % 5 === 0 && "sm:row-span-2 sm:aspect-auto",
-                lit
-                  ? "z-10 scale-[1.06] opacity-100 ring-2 ring-primary-hover saturate-100"
-                  : "opacity-45 saturate-[0.55]"
-              )}
-            >
-              {p.src && (
-                <Image
-                  src={p.src}
-                  alt=""
-                  fill
-                  sizes="(max-width: 640px) 25vw, 16vw"
-                  className="object-cover"
-                />
-              )}
-            </motion.div>
+            <div key={i} className={cn("rise relative", i % 5 === 0 && "sm:row-span-2")} style={{ animationDelay: `${i * 0.05}s` }}>
+              <div
+                className={cn(
+                  "relative aspect-square h-full w-full overflow-hidden rounded-2xl bg-surface-2 transition-all duration-700 ease-out",
+                  i % 5 === 0 && "sm:aspect-auto",
+                  lit ? "z-10 scale-[1.06] opacity-100 ring-2 ring-primary-hover saturate-100" : "opacity-45 saturate-[0.55]"
+                )}
+              >
+                {p.src && <Image src={p.src} alt="" fill sizes="(max-width: 640px) 25vw, 16vw" className="object-cover" />}
+              </div>
+            </div>
           );
         })}
       </div>

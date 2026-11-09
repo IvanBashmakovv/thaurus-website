@@ -1,18 +1,15 @@
-"use client";
-
-import { motion } from "framer-motion";
+import type { CSSProperties } from "react";
+import { cn } from "@/lib/cn";
 
 /**
- * Scroll-reveal: fades and lifts content into view once. `immediate` animates
- * on mount instead (for above-the-fold content that must show without a scroll).
- * The viewport margin only trims a sliver at the bottom so content near the
- * fold reveals as soon as it enters, not 10% in.
+ * Entrance wrapper. Content is in the server HTML and visible without JS; the
+ * only motion is a short CSS rise on load (prefers-reduced-motion disables it).
+ * The reference site has no scroll-reveals, and gating content behind
+ * hydration left whole sections blank on slow loads.
  */
 export function Reveal({
   children,
   delay = 0,
-  y = 28,
-  immediate = false,
   className,
 }: {
   children: React.ReactNode;
@@ -21,21 +18,10 @@ export function Reveal({
   immediate?: boolean;
   className?: string;
 }) {
-  const visible = { opacity: 1, y: 0 };
-  const transition = { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const, delay };
-  return immediate ? (
-    <motion.div initial={{ opacity: 0, y }} animate={visible} transition={transition} className={className}>
+  const style = delay ? ({ animationDelay: `${delay}s` } as CSSProperties) : undefined;
+  return (
+    <div className={cn("rise", className)} style={style}>
       {children}
-    </motion.div>
-  ) : (
-    <motion.div
-      initial={{ opacity: 0, y }}
-      whileInView={visible}
-      viewport={{ once: true, margin: "0px 0px -6% 0px" }}
-      transition={transition}
-      className={className}
-    >
-      {children}
-    </motion.div>
+    </div>
   );
 }

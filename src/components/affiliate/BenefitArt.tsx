@@ -1,44 +1,34 @@
-"use client";
-
-import { motion } from "framer-motion";
+import type { CSSProperties } from "react";
 import { Icon } from "@/components/ui/Icon";
-import { Stars } from "@/components/ui/Stars";
 import { Logo } from "@/components/Logo";
 
 export type ArtKind =
   | "commissions" | "payouts" | "withdrawals" | "trusted"
   | "creatives" | "tracking" | "support" | "globe" | "calculator" | "rewards";
 
-const float = (delay = 0, dy = 8) => ({
-  animate: { y: [0, -dy, 0] },
-  transition: { duration: 3.4, repeat: Infinity, ease: "easeInOut" as const, delay },
-});
+const d = (s: number): CSSProperties => ({ animationDelay: `${s}s` });
 
-/** Code-drawn illustrations in the style of premium partner sites. No amounts: nothing here is a figure. */
+/** Code-drawn illustrations. Pure CSS motion: everything is in the HTML and visible without JS. No amounts anywhere. */
 export function BenefitArt({ kind, tall = false }: { kind: ArtKind; tall?: boolean }) {
   const H = tall ? "h-56" : "h-44";
   switch (kind) {
     case "commissions":
       return (
         <Scene className={H}>
-          <span className="select-none bg-gradient-to-br from-primary-hover to-[#6f74c4] bg-clip-text text-[9rem] font-black leading-none text-transparent opacity-40">%</span>
-          <Chip className="right-6 top-6 bg-[#6a46f0] text-white shadow-[0_10px_30px_-8px_rgba(106,70,240,.8)]" delay={0.2}>+ Revenue share</Chip>
-          <Chip className="bottom-8 left-6 bg-[#1f9d63] text-white shadow-[0_10px_30px_-8px_rgba(31,157,99,.8)]" delay={1}>Paid</Chip>
+          <span className="art-float select-none bg-gradient-to-br from-primary-hover to-[#6f74c4] bg-clip-text text-[9rem] font-black leading-none text-transparent opacity-40">%</span>
+          <Chip className="right-6 top-6 bg-[#6a46f0] text-white shadow-[0_10px_30px_-8px_rgba(106,70,240,.8)]" style={d(0.2)}>+ Revenue share</Chip>
+          <Chip className="bottom-8 left-6 bg-[#1f9d63] text-white shadow-[0_10px_30px_-8px_rgba(31,157,99,.8)]" style={d(1)}>Paid</Chip>
         </Scene>
       );
     case "payouts":
       return (
         <Scene className={H}>
-          <TxRow className="translate-y-8 scale-[.94] opacity-40" muted />
-          <TxRow className="-translate-y-2" />
+          <div className="absolute w-[88%] translate-y-8 scale-[.94] opacity-40"><TxRow style={d(0)} /></div>
+          <div className="absolute w-[88%] -translate-y-2"><TxRow style={d(0.2)} /></div>
         </Scene>
       );
     case "withdrawals":
-      return (
-        <Scene className={H}>
-          <Phone />
-        </Scene>
-      );
+      return <Scene className={H}><Phone /></Scene>;
     case "trusted":
       return (
         <Scene className={H}>
@@ -48,21 +38,18 @@ export function BenefitArt({ kind, tall = false }: { kind: ArtKind; tall?: boole
               Trustpilot <span className="text-fg-muted">4.4/5</span>
             </div>
             <div className="flex gap-1.5">
-              {[0, 1, 2, 3, 4].map((i) => (
-                <motion.span key={i} initial={{ scale: 0.6, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.1 + i * 0.08, type: "spring", stiffness: 260, damping: 18 }} className="flex h-10 w-10 items-center justify-center bg-[#00B67A] text-xl text-white">★</motion.span>
-              ))}
+              {[0, 1, 2, 3, 4].map((i) => <span key={i} className="art-pop flex h-10 w-10 items-center justify-center bg-[#00B67A] text-xl text-white" style={d(0.1 + i * 0.08)}>★</span>)}
             </div>
-            <Stars rating={4.4} className="sr-only" />
           </div>
         </Scene>
       );
     case "globe":
       return (
         <Scene className={H}>
-          <motion.div {...float(0.1, 6)} className="relative h-28 w-28 rounded-full border border-primary-hover/40 bg-[radial-gradient(circle_at_30%_30%,rgba(111,116,196,.6),rgba(19,18,40,0)_70%)]">
+          <div className="art-float relative h-28 w-28 rounded-full border border-primary-hover/40 bg-[radial-gradient(circle_at_30%_30%,rgba(111,116,196,.6),rgba(19,18,40,0)_70%)]">
             {[0, 1, 2].map((i) => <span key={i} className="absolute inset-0 rounded-full border border-primary-hover/25" style={{ transform: `rotateY(${60 * i}deg) scaleX(.5)` }} />)}
             <span className="absolute left-1/2 top-1/2 h-px w-full -translate-x-1/2 bg-primary-hover/30" />
-          </motion.div>
+          </div>
         </Scene>
       );
     case "calculator":
@@ -70,15 +57,15 @@ export function BenefitArt({ kind, tall = false }: { kind: ArtKind; tall?: boole
         <Scene className={H}>
           <div className="w-52 rounded-xl border border-edge bg-surface/90 p-4 shadow-card">
             <div className="h-2 w-16 rounded bg-fg/15" />
-            <div className="mt-3 h-2 w-full rounded-full bg-fg/10"><motion.div initial={{ width: "20%" }} whileInView={{ width: "68%" }} viewport={{ once: true }} transition={{ duration: 1.2, ease: "easeOut" }} className="h-2 rounded-full bg-primary-hover" /></div>
-            <div className="mt-4 flex items-end gap-1.5">{[30, 45, 40, 62, 55, 80].map((h, i) => <motion.div key={i} initial={{ height: 0 }} whileInView={{ height: h * 0.6 }} viewport={{ once: true }} transition={{ delay: 0.1 + i * 0.07 }} className="w-5 rounded-t bg-primary-hover/70" />)}</div>
+            <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-fg/10"><div className="art-grow-x h-2 w-[68%] rounded-full bg-primary-hover" /></div>
+            <div className="mt-4 flex items-end gap-1.5">{[30, 45, 40, 62, 55, 80].map((h, i) => <div key={i} className="art-grow w-5 rounded-t bg-primary-hover/70" style={{ height: h * 0.6, ...d(0.1 + i * 0.07) }} />)}</div>
           </div>
         </Scene>
       );
     case "rewards":
       return (
         <Scene className={H}>
-          <motion.div {...float()} className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-[#6a46f0] to-primary-hover shadow-[0_18px_40px_-12px_rgba(106,70,240,.8)]"><Icon name="verified" className="h-10 w-10 text-white" /></motion.div>
+          <div className="art-float flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-[#6a46f0] to-primary-hover shadow-[0_18px_40px_-12px_rgba(106,70,240,.8)]"><Icon name="verified" className="h-10 w-10 text-white" /></div>
         </Scene>
       );
     default:
@@ -94,23 +81,23 @@ function Scene({ children, className, plain }: { children: React.ReactNode; clas
   return <div className={`relative flex items-center ${plain ? "justify-start" : "justify-center overflow-hidden rounded-xl bg-[radial-gradient(ellipse_at_top_left,rgba(66,71,139,.28),rgba(19,18,40,0)_60%)]"} ${className ?? ""}`}>{children}</div>;
 }
 
-function Chip({ children, className, delay = 0 }: { children: React.ReactNode; className: string; delay?: number }) {
-  return <motion.span {...float(delay)} className={`absolute rounded-pill px-3 py-1.5 text-xs font-semibold ${className}`}>{children}</motion.span>;
+function Chip({ children, className, style }: { children: React.ReactNode; className: string; style?: CSSProperties }) {
+  return <span style={style} className={`art-float absolute rounded-pill px-3 py-1.5 text-xs font-semibold ${className}`}>{children}</span>;
 }
 
-function TxRow({ className, muted }: { className?: string; muted?: boolean }) {
+function TxRow({ style }: { style?: CSSProperties }) {
   return (
-    <motion.div initial={{ x: 30, opacity: 0 }} whileInView={{ x: 0, opacity: muted ? 0.4 : 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: muted ? 0 : 0.2 }} className={`absolute flex w-[88%] items-center gap-3 rounded-xl border border-white/10 bg-[#1b1a35] px-4 py-3 shadow-card ${className ?? ""}`}>
+    <div style={style} className="art-slide flex items-center gap-3 rounded-xl border border-white/10 bg-[#1b1a35] px-4 py-3 shadow-card">
       <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-primary-hover text-xs font-bold text-white">T</span>
       <span className="flex-1 text-start text-xs leading-tight"><span className="block font-semibold text-white">Thaurus · Payout</span><span className="block text-white/50">1h ago</span></span>
       <span className="text-end text-xs leading-tight"><span className="block font-semibold text-[#2ecc8a]">Sent ✓</span><span className="block text-white/50">USD</span></span>
-    </motion.div>
+    </div>
   );
 }
 
 function Phone() {
   return (
-    <motion.div initial={{ rotate: -10, y: 60, opacity: 0 }} whileInView={{ rotate: -8, y: 28, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }} className="relative h-72 w-40 rounded-[2.2rem] border-[6px] border-[#0b0a18] bg-[#0b0a18] shadow-[0_30px_60px_-20px_rgba(0,0,0,.8)]">
+    <div className="art-phone relative h-72 w-40 rounded-[2.2rem] border-[6px] border-[#0b0a18] bg-[#0b0a18] shadow-[0_30px_60px_-20px_rgba(0,0,0,.8)]">
       <div className="absolute left-1/2 top-2 h-5 w-16 -translate-x-1/2 rounded-full bg-black" />
       <div className="h-full w-full overflow-hidden rounded-[1.8rem] bg-gradient-to-b from-[#2a2e6d] to-[#131228] p-3 pt-9">
         <div className="mb-3 flex items-center justify-between px-1 text-[10px] text-white/70"><span>9:41</span><span>●●●</span></div>
@@ -119,6 +106,6 @@ function Phone() {
           <p className="mt-1.5 font-semibold">Withdrawal approved.</p>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

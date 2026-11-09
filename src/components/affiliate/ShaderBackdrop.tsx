@@ -10,7 +10,7 @@ import { cn } from "@/lib/cn";
 const ShaderScene = dynamic(() => import("./ShaderScene"), { ssr: false });
 
 const TONES = {
-  dark: { color1: "#0d0c1e", color2: "#42478b", fade: "#0d0c1e", css: "linear-gradient(135deg,#0d0c1e 0%,#1d2052 55%,#42478b 100%)" },
+  dark: { color1: "#0e0d22", color2: "#3b3f8a", fade: "#0e0d22", css: "linear-gradient(135deg,#0e0d22 0%,#1c1f52 55%,#3b3f8a 100%)" },
   light: { color1: "#42478b", color2: "#eef1fb", fade: "#ffffff", css: "linear-gradient(135deg,#6a6fa8 0%,#c9cdf0 45%,#eef1fb 100%)" },
 } as const;
 

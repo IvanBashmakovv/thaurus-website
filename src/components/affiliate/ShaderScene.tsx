@@ -18,8 +18,16 @@ declare module "react" {
 const vertexShader = /* glsl */ `
 varying vec2 vUv;
 void main() {
-  vUv = uv;
-  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  vec2 uv = vUv;
+  float n1 = snoise(uv * 1.4 + vec2(uTime * 0.05, uTime * 0.03));
+  float n2 = snoise(uv * 2.6 - vec2(uTime * 0.03, uTime * 0.045));
+  float g = clamp((uv.x + uv.y) * 0.55 + n1 * 0.22 + n2 * 0.08, 0.0, 1.0);
+  vec3 color = mix(uColor1, uColor2, smoothstep(0.0, 1.0, g));
+  color = mix(color, uColor2, 0.12 * (n2 + 1.0));
+  color = mix(uFade, color, smoothstep(0.0, 0.3, length(uv)));
+  float vignette = smoothstep(1.25, 0.35, length(uv - 0.5));
+  color = mix(color * 0.9, color, vignette);
+  gl_FragColor = vec4(color, 1.0);
 }`;
 
 const fragmentShader = /* glsl */ `
@@ -50,13 +58,6 @@ float snoise(vec2 v){
   g.x  = a0.x  * x0.x  + h.x  * x0.y;
   g.yz = a0.yz * x12.xz + h.yz * x12.yw;
   return 130.0 * dot(m, g);
-}
-float bayerDither4x4(vec2 uv) {
-  int x = int(mod(uv.x, 4.0)); int y = int(mod(uv.y, 4.0));
-  int m[16];
-  m[0]=0; m[1]=8; m[2]=2; m[3]=10; m[4]=12; m[5]=4; m[6]=14; m[7]=6;
-  m[8]=3; m[9]=11; m[10]=1; m[11]=9; m[12]=15; m[13]=7; m[14]=13; m[15]=5;
-  return float(m[y * 4 + x]) / 16.0;
 }
 void main() {
   vec2 uv = vUv;

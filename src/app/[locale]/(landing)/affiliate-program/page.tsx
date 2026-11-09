@@ -14,7 +14,7 @@ import { Card } from "@/components/ui/Card";
 import { Icon } from "@/components/ui/Icon";
 import { Stars } from "@/components/ui/Stars";
 import { BrandImage } from "@/components/ui/BrandImage";
-import { ShaderBackdrop } from "@/components/affiliate/ShaderBackdrop";
+import { HeroShapes } from "@/components/affiliate/HeroShapes";
 import { FaqAccordion, FaqJsonLd } from "@/components/ui/FaqAccordion";
 import { buttonClasses } from "@/components/ui/Button";
 import { ProgramLogo } from "@/components/affiliate/ProgramLogo";
@@ -46,10 +46,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 /** Visible marker for a fact Thaurus still has to confirm. Never ships as final copy. */
 function Todo({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-1 rounded-md border border-dashed border-amber-400/70 bg-amber-400/10 px-1.5 py-0.5 text-xs font-medium text-amber-300">
-      <span className="font-bold">TODO</span>
-      {children}
-    </span>
+    <span title="To be confirmed by Thaurus" className="text-fg-faint underline decoration-dotted decoration-fg-faint/60 underline-offset-4">{children}</span>
   );
 }
 function T({ v }: { v: Txt }) {
@@ -71,22 +68,23 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
     <div id="top">
       <FaqJsonLd items={a.faq.items} />
         {/* 1. HERO */}
-        <section className="tone-dark relative overflow-hidden bg-surface pt-32 pb-16 text-fg sm:pt-40 sm:pb-20">
-          <ShaderBackdrop tone="dark" />
+        <section className="tone-dark relative overflow-hidden bg-surface pt-32 pb-12 text-fg sm:pt-40 sm:pb-14 lg:min-h-[590px]">
+          <div aria-hidden className="absolute inset-0 bg-[linear-gradient(135deg,#0e0d22_0%,#1c1f52_55%,#3b3f8a_100%)]" />
+          <HeroShapes />
           <Container className="relative z-10">
-            <div className="rise mx-auto max-w-3xl text-center">
-              <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">{a.hero.title}</h1>
-              <p className="mx-auto mt-5 max-w-2xl text-lg text-fg-muted">{a.hero.sub}</p>
-              <div className="mt-8"><Cta size="lg">{a.cta}</Cta></div>
+            <div className="rise mx-auto max-w-4xl text-center">
+              <h1 className="text-[2.5rem] font-medium leading-[1.08] tracking-tight sm:text-6xl lg:text-[4.5rem]">{a.hero.title}</h1>
+              <p className="mx-auto mt-5 max-w-2xl text-base text-fg-muted sm:text-lg">{a.hero.sub}</p>
+              <div className="mt-7"><Cta size="lg">{a.cta}</Cta></div>
             </div>
-            <ul className="mx-auto mt-14 flex max-w-4xl flex-wrap justify-center gap-3">
+            <ul className="mx-auto mt-12 flex max-w-4xl flex-wrap items-center justify-center gap-x-10 gap-y-3 border-t border-white/10 pt-6">
               {a.hero.pills.map((p, i) => (
                 <li
                   key={p.text}
-                  className="rise flex items-center gap-2 whitespace-nowrap rounded-pill border border-edge bg-surface-2/60 px-4 py-2.5 text-sm font-medium backdrop-blur"
+                  className="rise flex items-center gap-2.5 whitespace-nowrap text-sm font-medium text-fg-muted"
                   style={{ animationDelay: `${0.25 + i * 0.1}s` }}
                 >
-                  <Icon name={p.icon} className="h-4 w-4 text-primary-hover" />{p.text}
+                  <Icon name={p.icon} className="h-5 w-5 text-[#8f94e8]" />{p.text}
                 </li>
               ))}
             </ul>
@@ -223,9 +221,8 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
               </Marquee>
             </div>
           ) : (
-            <Reveal delay={0.1} className="mx-auto mt-12 max-w-2xl rounded-card border border-dashed border-amber-400/60 bg-amber-400/5 p-8 text-center text-sm text-fg-muted">
-              <Todo>partner quotes</Todo>
-              <p className="mt-3">{a.testimonials.pending}</p>
+            <Reveal delay={0.1} className="mx-auto mt-12 max-w-2xl rounded-card border border-edge bg-surface-2/70 p-8 text-center text-sm text-fg-muted">
+              <p>{a.testimonials.pending}</p>
             </Reveal>
           )}
         </Section>
@@ -238,8 +235,8 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
 
         {/* 11. APPLY — the on-page form, with the verbatim risk line next to the CTA */}
         <section id="apply" className="tone-light relative scroll-mt-20 overflow-hidden py-20 text-fg sm:py-28">
-          <ShaderBackdrop tone="light" speed={0.8} />
-          <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.65),transparent_60%)]" />
+          <div aria-hidden className="absolute inset-0 bg-[linear-gradient(135deg,#8a8fc9_0%,#c9cdf0_45%,#eef1fb_100%)]" />
+          <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.7),transparent_60%)]" />
           <Container className="relative z-10">
             <Reveal><SectionHeading eyebrow={a.apply.eyebrow} title={a.apply.title} subtitle={a.apply.sub} /></Reveal>
             <Reveal delay={0.15} className="mx-auto mt-12 max-w-3xl"><ApplyForm copy={a.apply} /></Reveal>
