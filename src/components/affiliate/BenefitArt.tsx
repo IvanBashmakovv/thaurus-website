@@ -15,7 +15,7 @@ export function BenefitArt({ kind, tall = false }: { kind: ArtKind; tall?: boole
       return (
         <Scene className={H}>
           <span className="art-float select-none bg-gradient-to-br from-primary-hover to-[#6f74c4] bg-clip-text text-[9rem] font-black leading-none text-transparent opacity-40">%</span>
-          <Chip className="right-6 top-6 bg-[#6a46f0] text-white shadow-[0_10px_30px_-8px_rgba(106,70,240,.8)]" style={d(0.2)}>+$2,985</Chip>
+          <Chip className="right-6 top-6 bg-[#42478b] text-white shadow-[0_10px_30px_-8px_rgba(66,71,139,.8)]" style={d(0.2)}>+$2,985</Chip>
           <Chip className="bottom-8 left-6 bg-[#1f9d63] text-white shadow-[0_10px_30px_-8px_rgba(31,157,99,.8)]" style={d(1)}>Paid ✓</Chip>
         </Scene>
       );
@@ -64,7 +64,7 @@ export function BenefitArt({ kind, tall = false }: { kind: ArtKind; tall?: boole
     case "rewards":
       return (
         <Scene className={H}>
-          <div className="art-float flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-[#6a46f0] to-primary-hover shadow-[0_18px_40px_-12px_rgba(106,70,240,.8)]"><Icon name="verified" className="h-10 w-10 text-white" /></div>
+          <div className="art-float flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-[#42478b] to-primary-hover shadow-[0_18px_40px_-12px_rgba(66,71,139,.8)]"><Icon name="verified" className="h-10 w-10 text-white" /></div>
         </Scene>
       );
     default:
@@ -96,7 +96,7 @@ function TxRow({ style }: { style?: CSSProperties }) {
 
 function BalanceCard() {
   return (
-    <div className="art-slide w-[17rem] rounded-2xl border border-white/10 bg-[linear-gradient(160deg,#2a2d6a,#141331)] p-5 text-start shadow-[0_30px_60px_-30px_rgba(0,0,0,.8)]">
+    <div className="art-slide w-[17rem] rounded-2xl border border-white/10 bg-[linear-gradient(160deg,#1f2a6b,#141331)] p-5 text-start shadow-[0_30px_60px_-30px_rgba(0,0,0,.8)]">
       <div className="flex items-center justify-between text-[11px] text-white/55">
         <span>Available balance</span>
         <span className="rounded-full bg-[#2ecc8a]/15 px-2 py-0.5 font-semibold text-[#2ecc8a]">Completed</span>
@@ -105,7 +105,7 @@ function BalanceCard() {
       <div className="mt-4 flex items-center justify-between rounded-xl bg-white/6 px-3 py-2.5 text-xs text-white/70">
         <span>Withdrawal · USD</span><span className="font-semibold text-white">Approved ✓</span>
       </div>
-      <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-white/10"><div className="art-grow-x h-full w-full rounded-full bg-gradient-to-r from-[#7c5cff] to-[#2ecc8a]" /></div>
+      <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-white/10"><div className="art-grow-x h-full w-full rounded-full bg-gradient-to-r from-[#4f55a3] to-[#2ecc8a]" /></div>
     </div>
   );
 }

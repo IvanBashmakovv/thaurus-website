@@ -28,7 +28,7 @@ function Row({ text, baseVelocity, className }: { text: string; baseVelocity: nu
     <div className="flex w-full flex-nowrap overflow-hidden whitespace-nowrap">
       <motion.div className={cn("flex whitespace-nowrap", className)} style={{ x }}>
         {Array.from({ length: 4 }).map((_, i) => (
-          <span key={i} className="block pe-10">{text}<span className="ps-10 text-[#8f94e8]">•</span></span>
+          <span key={i} className="block pe-10">{text}<span className="ps-10 text-[#9fb4ff]">•</span></span>
         ))}
       </motion.div>
     </div>

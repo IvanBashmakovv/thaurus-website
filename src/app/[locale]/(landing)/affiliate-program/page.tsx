@@ -21,8 +21,10 @@ import { cn } from "@/lib/cn";
 const PATH = routes.affiliate;
 const APPLY = "#apply";
 const BTN = "inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap px-6 text-sm font-semibold transition";
-const GRADIENT = "tone-dark relative overflow-hidden text-fg bg-[linear-gradient(90deg,#5b3fd6_0%,#42478b_55%,#2f6bd6_100%)]";
+const GRADIENT = "tone-dark relative overflow-hidden text-fg bg-[linear-gradient(90deg,#131228_0%,#42478b_55%,#2f6bd6_100%)]";
 const DARK = "tone-dark relative bg-[#0f0e24] text-fg";
+const LIGHT = "tone-light relative bg-white text-fg";
+const LIGHT2 = "tone-light relative bg-[#f4f6fc] text-fg";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -79,7 +81,7 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
               {a.steps.items.map((s, i) => (
                 <li key={s.title} className="relative text-start sm:text-center">
                   <span className="dot-glow absolute -left-9 top-1 block h-3.5 w-3.5 rounded-full bg-white sm:static sm:mx-auto" />
-                  <span className="inline-flex rounded-full bg-[#1b1a35]/80 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-[#c9c4ff] sm:mt-5">{String(i + 1).padStart(2, "0")} · {a.steps.stepLabel}</span>
+                  <span className="inline-flex rounded-full bg-[#1b1a35]/80 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-[#c7d2ff] sm:mt-5">{String(i + 1).padStart(2, "0")} · {a.steps.stepLabel}</span>
                   <h3 className="mt-3 text-lg font-semibold text-white">{s.title}</h3>
                   <p className="mt-1.5 text-sm text-white/65">{s.body}</p>
                 </li>
@@ -99,7 +101,7 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
               {a.trusted.tiles.map((t) => (
                 <div key={t.label} className="g-tile px-6 py-8 text-center sm:px-8 sm:py-12">
                   <div className="relative text-5xl font-bold tabular-nums tracking-tight text-white sm:text-7xl">{t.value}</div>
-                  <span className="relative mx-auto mt-5 block h-1 w-12 rounded-full bg-[#c9c4ff]/80" />
+                  <span className="relative mx-auto mt-5 block h-1 w-12 rounded-full bg-[#c7d2ff]/80" />
                   <div className="relative mt-4 text-xs font-bold uppercase tracking-[0.22em] text-white/80">{t.label}</div>
                 </div>
               ))}
@@ -121,15 +123,15 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
       </section>
 
       {/* 5. KEY BENEFITS — 2 + 2 + 3 glass cards */}
-      <section id="benefits" className={cn(DARK, "scroll-mt-20 py-20 sm:py-28")}>
+      <section id="benefits" className={cn(LIGHT, "scroll-mt-20 py-20 sm:py-28")}>
         <Container>
           <SectionHeading eyebrow={a.benefits.eyebrow} title={a.benefits.title} />
           <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
             {a.benefits.items.map((b, i) => (
-              <div key={b.title} className={cn("g-card p-6", i < 4 ? "lg:col-span-3" : "lg:col-span-2")}>
+              <div key={b.title} className={cn("l-card p-6", i < 4 ? "lg:col-span-3" : "lg:col-span-2")}>
                 <BenefitArt kind={b.art} tall={i < 4} />
-                <h3 className="mt-5 text-lg font-semibold text-white">{b.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/65">{b.body}</p>
+                <h3 className="mt-5 text-lg font-semibold text-fg">{b.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-fg-muted">{b.body}</p>
               </div>
             ))}
           </div>
@@ -137,25 +139,25 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
       </section>
 
       {/* 6. COMPARISON — glass table */}
-      <section id="comparison" className={cn(DARK, "scroll-mt-20 pb-20 sm:pb-28")}>
+      <section id="comparison" className={cn(LIGHT2, "scroll-mt-20 py-20 sm:py-28")}>
         <Container>
           <SectionHeading eyebrow={a.comparison.eyebrow} title={a.comparison.title} />
           <div className="mt-10 grid gap-4 md:hidden">
             {a.comparison.rows.map((r) => (
-              <div key={r.label} className="g-card p-5">
-                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/50">{r.label}</p>
+              <div key={r.label} className="l-card p-5">
+                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-fg-faint">{r.label}</p>
                 <div className="mt-3 space-y-3 text-sm">
-                  <div><ProgramLogo program="ib" size="sm" /><p className="mt-1 text-white/80">{r.a}</p></div>
-                  <div><ProgramLogo program="affiliates" size="sm" /><p className="mt-1 text-white/80">{r.b}</p></div>
+                  <div><ProgramLogo program="ib" size="sm" /><p className="mt-1 text-fg-muted">{r.a}</p></div>
+                  <div><ProgramLogo program="affiliates" size="sm" /><p className="mt-1 text-fg-muted">{r.b}</p></div>
                 </div>
               </div>
             ))}
             <a href={APPLY} className={cn(BTN, "btn-glow mt-2 w-full")}>{a.cta}</a>
           </div>
-          <div className="g-card mx-auto mt-14 hidden max-w-5xl overflow-x-auto p-2 sm:p-4 md:block">
+          <div className="l-card mx-auto mt-14 hidden max-w-5xl overflow-x-auto p-2 sm:p-4 md:block">
             <table className="w-full min-w-[640px] border-collapse text-sm">
               <thead>
-                <tr className="border-b border-white/10">
+                <tr className="border-b border-[#131228]/10">
                   <th className="w-40 py-5 ps-4 pe-4" />
                   <th className="py-5 px-4 text-start"><ProgramLogo program="ib" /></th>
                   <th className="py-5 px-4 text-start"><ProgramLogo program="affiliates" /></th>
@@ -163,10 +165,10 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
               </thead>
               <tbody>
                 {a.comparison.rows.map((r) => (
-                  <tr key={r.label} className="border-b border-white/8 align-top">
-                    <th scope="row" className="py-6 ps-4 pe-4 text-start font-medium text-white/55">{r.label}</th>
-                    <td className="py-6 px-4 text-white/80">{r.a}</td>
-                    <td className="py-6 px-4 text-white/80">{r.b}</td>
+                  <tr key={r.label} className="border-b border-[#131228]/8 align-top">
+                    <th scope="row" className="py-6 ps-4 pe-4 text-start font-medium text-fg-faint">{r.label}</th>
+                    <td className="py-6 px-4 text-fg-muted">{r.a}</td>
+                    <td className="py-6 px-4 text-fg-muted">{r.b}</td>
                   </tr>
                 ))}
                 <tr>
@@ -181,14 +183,14 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
       </section>
 
       {/* 7. TESTIMONIALS */}
-      <section className={cn(DARK, "pb-20 sm:pb-28")}>
+      <section className={cn(DARK, "py-20 sm:py-28")}>
         <Container>
           <SectionHeading eyebrow={a.testimonials.eyebrow} title={a.testimonials.title} />
           {a.testimonials.items.length > 0 ? (
             <div className="mt-12 [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
               <Marquee duration={90}>
                 {a.testimonials.items.map((t, i) => (
-                  <figure key={i} className={cn("w-80 shrink-0 rounded-[20px] p-6", i % 2 ? "bg-[linear-gradient(135deg,#5b3fd6,#2f6bd6)] text-white" : "g-card")}>
+                  <figure key={i} className={cn("w-80 shrink-0 rounded-[20px] p-6", i % 2 ? "bg-[linear-gradient(135deg,#131228,#2f6bd6)] text-white" : "g-card")}>
                     <blockquote className="text-sm leading-relaxed">{t.quote}</blockquote>
                     <figcaption className="mt-5 text-sm font-semibold">{t.author}{t.role && <span className="block text-xs font-normal opacity-70">{t.role}</span>}</figcaption>
                   </figure>
@@ -203,7 +205,7 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
       </section>
 
       {/* 8. FAQ */}
-      <section id="faq" className={cn(DARK, "scroll-mt-20 pb-20 sm:pb-28")}>
+      <section id="faq" className={cn(LIGHT, "scroll-mt-20 py-20 sm:py-28")}>
         <Container>
           <SectionHeading eyebrow={a.faq.eyebrow} title={a.faq.title} />
           <div className="mt-12"><FaqAccordion items={a.faq.items} /></div>
@@ -250,7 +252,7 @@ function ProgramCardView({ card, learnMore }: { card: ProgramCard; learnMore: st
   return (
     <div className="tone-light flex h-full flex-col rounded-[20px] bg-white p-8 text-fg shadow-[0_40px_80px_-40px_rgba(0,0,0,.6)]">
       <ProgramLogo program={card.program} />
-      <p className={cn("mt-6 text-[1.75rem] font-bold leading-tight", card.program === "ib" ? "text-[#6a46f0]" : "text-[#2f6bd6]")}>{card.model}</p>
+      <p className={cn("mt-6 text-[1.75rem] font-bold leading-tight", card.program === "ib" ? "text-[#42478b]" : "text-[#2f6bd6]")}>{card.model}</p>
       <ul className="mt-5 list-disc space-y-2 ps-5 text-sm text-fg-muted">{card.bullets.map((b) => <li key={b}>{b}</li>)}</ul>
       <div className="mt-8 flex flex-col gap-3">
         <a href={APPLY} className={cn(BTN, "btn-glow w-full")}>{card.cta}</a>
