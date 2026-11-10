@@ -64,7 +64,7 @@ export function ApplyForm({ copy }: { copy: ApplyCopy }) {
 
   const err = (f: ApplyField) => (state.errors?.[f] ? copy.errors[f] : null);
   const Field = ({ f, label, hint, children }: { f: ApplyField; label: string; hint?: string; children: React.ReactNode }) => (
-    <label className="block">
+    <label className={cn("block", err(f) && "[&_input]:border-red-400 [&_textarea]:border-red-400")}>
       <span className="mb-1.5 block text-sm font-medium text-fg-muted">{label}</span>
       {children}
       {err(f) ? <span className="mt-1 block text-xs text-red-400">{err(f)}</span> : hint ? <span className="mt-1 block text-xs text-fg-faint">{hint}</span> : null}

@@ -18,7 +18,8 @@ export default function proxy(req: NextRequest) {
     const parts = pathname.split("/").filter(Boolean);
     const hasLocale = parts.length > 0 && (locales as readonly string[]).includes(parts[0]);
     const rest = "/" + (hasLocale ? parts.slice(1) : parts).join("/");
-    if (rest !== LANDING) {
+    // The landing itself and its Open Graph image (every locale) pass through.
+    if (rest !== LANDING && rest !== "/opengraph-image") {
       const url = req.nextUrl.clone();
       url.pathname = (hasLocale ? `/${parts[0]}` : "") + LANDING;
       url.search = "";
