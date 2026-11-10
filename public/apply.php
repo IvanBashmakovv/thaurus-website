@@ -106,11 +106,15 @@ if ($url === '') {
         $res = @file_get_contents($url, false, $ctx);
         if ($res === false) {
             $err = 'file_get_contents failed';
-        } elseif (isset($http_response_header[0]) && preg_match('/\s(\d{3})\s/', $http_response_header[0], $m)) {
-            $status = (int)$m[1];
+        } elseif (!empty($http_response_header)) {
+            // The header list covers the whole redirect chain: take the LAST status line.
+            foreach ($http_response_header as $line) {
+                if (preg_match('/^HTTP\/\S+\s(\d{3})/', $line, $m)) $status = (int)$m[1];
+            }
         }
     }
-    if ($err !== '' || $status < 200 || $status >= 300) {
+    // Apps Script answers the POST with a 302 to its result page once the row is appended.
+    if ($err !== '' || $status < 200 || $status >= 400) {
         error_log('[apply] webhook failed: status ' . $status . ($err !== '' ? ' ' . $err : '') . ' for ' . $payload['email']);
     }
 }
