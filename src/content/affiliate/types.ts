@@ -17,7 +17,7 @@ export type AffiliateData = {
   benefits: { eyebrow: string; title: string; items: { art: ArtKind; title: string; body: string }[] };
   comparison: { eyebrow: string; title: string; rows: { label: string; a: string; b: string }[]; ctaA: string; ctaB: string };
   steps: { eyebrow: string; title: string; sub: string; stepLabel: string; items: { title: string; body: string }[] };
-  testimonials: { eyebrow: string; title: string; authorLabel: string; showAll: string; items: Testimonial[]; pending: string; note: string };
+  testimonials: { eyebrow: string; title: string; authorLabel: string; items: Testimonial[]; pending: string };
   faq: { eyebrow: string; title: string; items: { q: string; a: string }[] };
   finalCta: { title: string; cards: { program: Program; headline: string; model: string; cta: string }[] };
   apply: ApplyCopy & { eyebrow: string; risk: string };

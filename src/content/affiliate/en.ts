@@ -84,10 +84,8 @@ export const en: AffiliateData = {
     eyebrow: "Testimonials",
     title: "See what our partners say about us",
     authorLabel: "Thaurus Partner",
-    showAll: "Show all reviews",
     items: REVIEWS,
     pending: "Partner reviews are being collected and will be published here with the partner's name and program.",
-    note: "Reviews are based on feedback from Thaurus partners. Individual experiences may vary.",
   },
   faq: {
     eyebrow: "FAQ",

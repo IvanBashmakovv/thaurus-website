@@ -181,7 +181,6 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
               <p className="g-card p-8 text-sm text-white/65">{a.testimonials.pending}</p>
             )}
           </div>
-          <p className="mt-6 text-xs text-white/40">{a.testimonials.note}</p>
         </Container>
       </section>
 
