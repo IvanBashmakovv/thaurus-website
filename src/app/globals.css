@@ -405,9 +405,10 @@ html { scroll-behavior: smooth; }
 .l-card { position:relative; border-radius:20px; border:1px solid rgba(19,18,40,.08); background:#fff; box-shadow: 0 1px 2px rgba(19,18,40,.04), 0 24px 48px -32px rgba(19,18,40,.25); }
 
 /* Mobile card carousel (Exness pattern): cards peek past the right edge and snap on swipe; a grid from md. */
-.swipe { display:flex; gap:14px; overflow-x:auto; overscroll-behavior-x:contain; scroll-snap-type:x mandatory; margin-inline:-20px; padding-inline:20px; padding-bottom:6px; scroll-padding-inline:20px; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
+.swipe { display:flex; gap:16px; overflow-x:auto; overscroll-behavior-x:contain; scroll-snap-type:x mandatory; margin-inline:-20px; padding-inline:20px; padding-bottom:6px; scroll-padding-inline:20px; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
 .swipe::-webkit-scrollbar { display:none; }
-.swipe > * { flex:0 0 auto; width:min(76vw, 300px); scroll-snap-align:start; }
+.swipe > * { flex:0 0 auto; width:270px; scroll-snap-align:start; }
 @media (min-width:640px) { .swipe { margin-inline:-32px; padding-inline:32px; scroll-padding-inline:32px; } }
 @media (min-width:768px) { .swipe { display:grid; gap:24px; overflow:visible; margin-inline:0; padding:0; } .swipe > * { width:auto; } }
+
 

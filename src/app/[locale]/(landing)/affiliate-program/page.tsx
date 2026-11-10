@@ -51,22 +51,22 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
         <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-72 bg-gradient-to-b from-transparent to-[#0b0a1a]" />
 
         {/* 1. HERO */}
-        <section className="relative pt-28 pb-8 sm:pt-44 sm:pb-16">
+        <section className="relative pt-[136px] pb-6 sm:pt-44 sm:pb-16">
           <Container className="relative z-10">
             <div className="rise mx-auto max-w-4xl text-center">
-              <span className="pill-glow inline-flex h-11 items-center px-6 text-sm font-bold uppercase tracking-wide text-white">{a.hero.badge}</span>
-              <h1 className="mt-6 text-4xl font-bold leading-[1.15] tracking-[-0.02em] sm:mt-8 sm:text-6xl sm:leading-[1.02] lg:text-[5rem]">{a.hero.title}</h1>
-              <p className="mx-auto mt-5 max-w-2xl text-[17px] leading-snug text-white/80 sm:mt-6 sm:text-xl sm:leading-normal">{a.hero.sub}</p>
+              <span className="pill-glow hidden h-11 sm:inline-flex items-center px-6 text-sm font-bold uppercase tracking-wide text-white">{a.hero.badge}</span>
+              <h1 className="text-4xl font-bold leading-[44px] tracking-[-0.02em] sm:mt-8 sm:text-6xl sm:leading-[1.02] lg:text-[5rem]">{a.hero.title}</h1>
+              <p className="mx-auto mt-2 max-w-2xl text-lg leading-[26px] text-white/90 sm:mt-6 sm:text-xl sm:leading-normal">{a.hero.sub}</p>
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:mt-9 sm:flex-row">
-                <a href={APPLY} className={cn(BTN, "btn-glow h-13 px-8 text-base")}>{a.cta}<Icon name="arrow" className="h-4 w-4" /></a>
+                <a href={APPLY} className={cn(BTN, "btn-glow h-12 px-8 text-base sm:h-13")}>{a.cta}<Icon name="arrow" className="h-4 w-4" /></a>
                 <a href="#programs" className={cn(BTN, "btn-glass hidden h-13 px-7 text-base sm:inline-flex")}>{a.learnMore}</a>
               </div>
             </div>
-            <ul className="mx-auto mt-9 grid max-w-sm gap-4 border-t border-white/12 pt-7 sm:mt-14 sm:max-w-4xl sm:grid-cols-3 sm:gap-6 sm:border-0 sm:pt-0">
+            <ul className="-mx-5 mt-16 grid gap-4 border-t border-white/15 px-6 pt-5 sm:mx-auto sm:mt-14 sm:max-w-4xl sm:grid-cols-3 sm:gap-6 sm:border-0 sm:px-0 sm:pt-0">
               {a.hero.features.map((f, i) => (
-                <li key={f.title} className="rise flex items-center gap-3.5 sm:justify-self-center" style={{ animationDelay: `${0.25 + i * 0.1}s` }}>
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/10 backdrop-blur sm:h-11 sm:w-11"><Icon name={f.icon} className="h-5 w-5 text-white" /></span>
-                  <span className="text-start leading-tight"><span className="block text-base font-semibold text-white sm:text-sm">{f.title}</span><span className="block text-xs text-white/60">{f.sub}</span></span>
+                <li key={f.title} className="rise flex items-center gap-2 sm:gap-3.5 sm:justify-self-center" style={{ animationDelay: `${0.25 + i * 0.1}s` }}>
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center sm:h-11 sm:w-11 sm:rounded-full sm:border sm:border-white/15 sm:bg-white/10 sm:backdrop-blur"><Icon name={f.icon} className="h-6 w-6 text-white sm:h-5 sm:w-5" /></span>
+                  <span className="text-start leading-tight"><span className="block text-base font-normal leading-6 text-white sm:text-sm sm:font-semibold sm:leading-tight">{f.title}</span><span className="hidden text-xs text-white/60 sm:block">{f.sub}</span></span>
                 </li>
               ))}
             </ul>
@@ -111,19 +111,19 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
       </div>
 
       {/* 4. CHOOSE YOUR PARTNERSHIP */}
-      <section id="programs" className={cn(GRADIENT, "scroll-mt-20 py-10 sm:py-24")}>
+      <section id="programs" className={cn(GRADIENT, "scroll-mt-20 py-8 sm:py-24")}>
         <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(80%_60%_at_50%_0%,rgba(255,255,255,.18),transparent_70%)]" />
         <Container className="relative">
-          <p className="text-center text-xs font-bold uppercase tracking-[0.3em] text-white/70">{a.programs.eyebrow}</p>
-          <h2 className="mx-auto mt-3 max-w-3xl text-center text-[28px] font-bold leading-tight text-white sm:mt-4 sm:text-5xl">{a.programs.title}</h2>
-          <div className="swipe mx-auto mt-8 max-w-5xl sm:mt-12 md:grid-cols-2">
+          <p className="text-center text-base font-medium uppercase tracking-[0.6px] text-white/95 sm:text-xs sm:font-bold sm:tracking-[0.3em] sm:text-white/70">{a.programs.eyebrow}</p>
+          <h2 className="mx-auto mt-3 hidden max-w-3xl text-center text-[28px] font-bold leading-tight text-white sm:mt-4 sm:block sm:text-5xl">{a.programs.title}</h2>
+          <div className="swipe mx-auto mt-7 max-w-5xl sm:mt-12 md:grid-cols-2">
             {a.programs.cards.map((c) => <ProgramCardView key={c.program} card={c} learnMore={a.learnMore} />)}
           </div>
         </Container>
       </section>
 
       {/* 5. KEY BENEFITS — 2 + 2 + 3 glass cards */}
-      <section id="benefits" className={cn(LIGHT, "scroll-mt-20 py-10 sm:py-28")}>
+      <section id="benefits" className={cn(LIGHT, "scroll-mt-20 py-8 sm:py-28")}>
         <Container>
           <SectionHeading eyebrow={a.benefits.eyebrow} title={a.benefits.title} />
           <div className="swipe mt-8 sm:mt-14 md:grid-cols-2 lg:grid-cols-6">
@@ -139,7 +139,7 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
       </section>
 
       {/* 6. COMPARISON — glass table */}
-      <section id="comparison" className={cn(LIGHT2, "scroll-mt-20 py-10 sm:py-28")}>
+      <section id="comparison" className={cn(LIGHT2, "scroll-mt-20 py-8 sm:py-28")}>
         <Container>
           <SectionHeading eyebrow={a.comparison.eyebrow} title={a.comparison.title} />
           <div className="md:hidden">
@@ -185,7 +185,7 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
       </section>
 
       {/* 7. TESTIMONIALS */}
-      <section className={cn(DARK, "py-10 sm:py-28")}>
+      <section className={cn(DARK, "py-8 sm:py-28")}>
         <Container>
           <SectionHeading eyebrow={a.testimonials.eyebrow} title={a.testimonials.title} />
           {a.testimonials.items.length > 0 ? (
@@ -207,7 +207,7 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
       </section>
 
       {/* 8. FAQ */}
-      <section id="faq" className={cn(LIGHT, "scroll-mt-20 py-10 sm:py-28")}>
+      <section id="faq" className={cn(LIGHT, "scroll-mt-20 py-8 sm:py-28")}>
         <Container>
           <SectionHeading eyebrow={a.faq.eyebrow} title={a.faq.title} />
           <div className="mt-8 sm:mt-12"><FaqAccordion items={a.faq.items} /></div>
@@ -215,19 +215,19 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
       </section>
 
       {/* 9. START EARNING TODAY — cards + application */}
-      <section id="apply" className={cn(GRADIENT, "scroll-mt-20 py-10 sm:py-24")}>
+      <section id="apply" className={cn(GRADIENT, "scroll-mt-20 py-8 sm:py-24")}>
         <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(80%_60%_at_50%_0%,rgba(255,255,255,.18),transparent_70%)]" />
         <Container className="relative">
           <h2 className="text-center text-[28px] font-bold leading-tight text-white sm:text-5xl">{a.finalCta.title}</h2>
           <div className="swipe mx-auto mt-8 max-w-5xl sm:mt-12 md:grid-cols-2">
             {a.finalCta.cards.map((c) => (
-              <div key={c.program} className="tone-light flex flex-col rounded-2xl bg-white p-6 text-fg shadow-[0_40px_80px_-40px_rgba(0,0,0,.6)] sm:rounded-[20px] sm:p-8">
+              <div key={c.program} className="tone-light flex flex-col rounded-lg bg-white p-6 text-fg sm:rounded-[20px] sm:p-8 sm:shadow-[0_40px_80px_-40px_rgba(0,0,0,.6)]">
                 <ProgramLogo program={c.program} />
                 <h3 className="mt-6 text-xl font-semibold">{c.headline}</h3>
                 <p className="mt-1 text-sm text-fg-muted">{c.model}</p>
-                <div className="mt-auto flex flex-col gap-3 pt-6">
-                  <a href="#apply-form" className={cn(BTN, "btn-glow w-full")}>{c.cta}</a>
-                  <a href="#comparison" className={cn(BTN, "w-full rounded-xl bg-[#eceef5] text-[#131228] hover:bg-[#dfe2ee]")}>{a.learnMore}</a>
+                <div className="mt-auto flex flex-col items-center gap-4 pt-6 sm:items-stretch sm:gap-3">
+                  <a href="#apply-form" className={cn(BTN, "btn-glow w-[200px] sm:w-full")}>{c.cta}</a>
+                  <a href="#comparison" className={cn(BTN, "w-[200px] rounded-xl sm:w-full bg-[#eceef5] text-[#131228] hover:bg-[#dfe2ee]")}>{a.learnMore}</a>
                 </div>
               </div>
             ))}
@@ -252,13 +252,13 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
 
 function ProgramCardView({ card, learnMore }: { card: ProgramCard; learnMore: string }) {
   return (
-    <div className="tone-light flex h-full flex-col rounded-2xl bg-white p-6 text-fg shadow-[0_40px_80px_-40px_rgba(0,0,0,.6)] sm:rounded-[20px] sm:p-8">
+    <div className="tone-light flex h-full flex-col rounded-lg bg-white p-6 text-fg sm:rounded-[20px] sm:p-8 sm:shadow-[0_40px_80px_-40px_rgba(0,0,0,.6)]">
       <ProgramLogo program={card.program} />
-      <p className={cn("mt-5 text-2xl font-bold leading-tight sm:mt-6 sm:text-[1.75rem]", card.program === "ib" ? "text-[#42478b]" : "text-[#2f6bd6]")}>{card.model}</p>
-      <ul className="mt-5 list-disc space-y-2 ps-5 text-sm text-fg-muted">{card.bullets.map((b) => <li key={b}>{b}</li>)}</ul>
-      <div className="mt-auto flex flex-col gap-3 pt-7">
-        <a href={APPLY} className={cn(BTN, "btn-glow w-full")}>{card.cta}</a>
-        <a href="#comparison" className={cn(BTN, "w-full rounded-xl bg-[#eceef5] text-[#131228] hover:bg-[#dfe2ee]")}>{learnMore}</a>
+      <p className={cn("mt-6 text-2xl font-bold leading-8 sm:text-[1.75rem] sm:leading-tight", card.program === "ib" ? "text-[#42478b]" : "text-[#2f6bd6]")}>{card.model}</p>
+      <ul className="mt-12 list-disc space-y-2 ps-5 text-sm leading-5 text-fg-muted sm:mt-5">{card.bullets.map((b) => <li key={b}>{b}</li>)}</ul>
+      <div className="mt-auto flex flex-col items-center gap-4 pt-8 sm:items-stretch sm:gap-3 sm:pt-7">
+        <a href={APPLY} className={cn(BTN, "btn-glow w-[200px] sm:w-full")}>{card.cta}</a>
+        <a href="#comparison" className={cn(BTN, "w-[200px] rounded-xl sm:w-full bg-[#eceef5] text-[#131228] hover:bg-[#dfe2ee]")}>{learnMore}</a>
       </div>
     </div>
   );

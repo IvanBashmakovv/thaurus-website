@@ -26,7 +26,7 @@ export function LandingHeader({ items, cta, languageLabel }: { items: Item[]; ct
   return (
     <header className={cn("tone-dark fixed inset-x-0 top-0 z-50 text-fg transition-colors duration-300", scrolled || mobile ? "border-b border-edge bg-surface/90 backdrop-blur-xl" : "border-b border-transparent")}>
       <Container className="max-w-[92rem]">
-        <div className="flex h-16 items-center justify-between gap-3 lg:h-18">
+        <div className="flex h-18 items-center justify-between gap-3">
           <a href="#top" className="flex shrink-0 items-end gap-2" aria-label="Thaurus Partners" onClick={() => setMobile(false)}>
             <Logo className="h-5 sm:h-6" />
             <span className="hidden text-sm font-medium leading-none text-fg-muted sm:block">Partners</span>
