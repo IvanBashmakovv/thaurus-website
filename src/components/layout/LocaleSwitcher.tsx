@@ -2,8 +2,9 @@
 
 import { useState, useRef, useEffect, useTransition } from "react";
 import { useLocale } from "next-intl";
+import { useRouter as useNextRouter } from "next/navigation";
 import { usePathname, useRouter } from "@/i18n/navigation";
-import { locales, localeNames, type Locale } from "@/i18n/routing";
+import { defaultLocale, locales, localeNames, type Locale } from "@/i18n/routing";
 import { cn } from "@/lib/cn";
 
 /** Switches locale while preserving the current page (audit §3 hreflang note). */
@@ -11,6 +12,7 @@ export function LocaleSwitcher({ label }: { label: string }) {
   const active = useLocale() as Locale;
   const pathname = usePathname();
   const router = useRouter();
+  const nextRouter = useNextRouter();
   const [open, setOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
   const ref = useRef<HTMLDivElement>(null);
@@ -33,7 +35,10 @@ export function LocaleSwitcher({ label }: { label: string }) {
   function select(next: Locale) {
     setOpen(false);
     startTransition(() => {
-      router.replace(pathname, { locale: next });
+      // Static export, no middleware: next-intl would force the /en prefix when
+      // switching to the default locale, so navigate to the unprefixed URL directly.
+      if (next === defaultLocale) nextRouter.replace(pathname);
+      else router.replace(pathname, { locale: next });
     });
   }
 

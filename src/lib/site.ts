@@ -8,8 +8,8 @@
 export const siteConfig = {
   name: "Thaurus",
   legalName: "Thaurus Ltd",
-  /** Public marketing site (production canonical host). */
-  url: "https://thaurus.com",
+  /** Production host of this landing (canonical, hreflang, OG image, robots, sitemap). */
+  url: "https://affiliate.thaurus.com",
   description:
     "Thaurus is a regulated multi-asset broker (FSC Mauritius). Trade forex, stocks, futures, CFDs and commodities on MetaTrader 5 with advanced tools and real human support.",
 

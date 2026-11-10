@@ -1,0 +1,83 @@
+# Thaurus partnership landing: static Next.js export on Apache/LiteSpeed.
+# Document root = contents of out/. Mirrors the routing the Next.js proxy did:
+#   /affiliate-program             -> en/affiliate-program.html (English has no prefix)
+#   /th|es|ar|pt/affiliate-program -> that locale's file
+#   anything else                  -> 307 to the landing in the same locale
+#   /apply.php                     -> form endpoint (PHP, see public/apply.php)
+#
+# Exported layout per locale (xx = en|th|es|ar|pt):
+#   xx/affiliate-program.html      the page
+#   xx/affiliate-program.txt       RSC payload (client-side navigation)
+#   xx/affiliate-program/*.txt     RSC segment payloads (prefetch / locale switcher)
+#   xx/opengraph-image             PNG without extension
+
+DirectorySlash Off
+Options -Indexes -MultiViews
+AddDefaultCharset utf-8
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+# 1. English without a prefix: page, RSC payloads and OG image come from en/.
+RewriteRule ^affiliate-program$            en/affiliate-program.html [L]
+RewriteRule ^affiliate-program(\.txt|/.+)$ en/affiliate-program$1 [L]
+RewriteRule ^opengraph-image$              en/opengraph-image [L]
+
+# 2. Other locales: extension-less page URL -> .html
+RewriteRule ^(th|es|ar|pt)/affiliate-program$ $1/affiliate-program.html [L]
+
+# 3. Files that really exist (/_next/, photos, legal PDFs, robots, sitemap, icon,
+#    apply.php, locale .txt payloads, opengraph-image files) are served as is.
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# 4. Missing files under asset folders, missing locale files, or any missing
+#    file with an extension are a real 404 (never redirected to the landing).
+RewriteRule ^(_next|photos|legal|brand)(/|$)       - [R=404,L]
+RewriteRule ^(en|th|es|ar|pt)/.+\.[A-Za-z0-9]+$     - [R=404,L]
+RewriteRule ^[^/]+\.[A-Za-z0-9]+$                   - [R=404,L]
+
+# 5. Everything else -> landing in the same locale (/en/... is English = no prefix).
+RewriteRule ^en(/.*)?$             /affiliate-program [R=307,L]
+RewriteRule ^(th|es|ar|pt)(/.*)?$  /$1/affiliate-program [R=307,L]
+RewriteRule ^                      /affiliate-program [R=307,L]
+</IfModule>
+
+# Content types: generated Open Graph images have no extension; RSC payloads
+# must be text/x-component or the Next.js router falls back to full reloads.
+<Files "opengraph-image">
+  ForceType image/png
+</Files>
+<FilesMatch "\.txt$">
+  ForceType text/x-component
+</FilesMatch>
+<Files "robots.txt">
+  ForceType text/plain
+</Files>
+
+# Caching: hashed build assets (/_next/static/*.js|css|woff2) forever,
+# HTML and RSC payloads never.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(html|txt)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  <Files "opengraph-image">
+    Header set Cache-Control "public, max-age=86400"
+  </Files>
+  <Files "apply.php">
+    Header set Cache-Control "no-store"
+  </Files>
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+  ExpiresByType application/pdf "access plus 7 days"
+</IfModule>

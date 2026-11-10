@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
-import { applyPartner, type ApplyState, type ApplyField } from "@/app/[locale]/(landing)/affiliate-program/actions";
+import { applyPartner, type ApplyState, type ApplyField } from "@/lib/apply";
 import { buttonClasses } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { cn } from "@/lib/cn";
