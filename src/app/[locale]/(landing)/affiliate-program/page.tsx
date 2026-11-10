@@ -4,7 +4,7 @@ import { setRequestLocale } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { buildMetadata } from "@/lib/seo";
 import { routes } from "@/lib/site";
-import { pressLogos } from "@/content/home";
+import { pressLogos } from "@/content/affiliate/press";
 import { getAffiliate } from "@/content/affiliate";
 import type { ProgramCard } from "@/content/affiliate/types";
 import { Container } from "@/components/ui/Container";

@@ -18,7 +18,6 @@ export function Reviews({ items, authorLabel }: { items: Testimonial[]; authorLa
                 height={24}
                 alt={t.country}
                 title={t.country}
-                loading="lazy"
                 className="h-6 w-8 rounded-[3px] object-cover shadow-[0_0_0_1px_rgba(255,255,255,.15)]"
               />
               <span className="text-sm font-semibold text-white">{authorLabel}</span>
