@@ -2,18 +2,22 @@ import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
-import { Figtree } from "next/font/google";
+import localFont from "next/font/local";
 import { routing, isRtl, type Locale } from "@/i18n/routing";
 import { siteConfig } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
 import "../globals.css";
 
-const figtree = Figtree({
-  subsets: ["latin"],
+// Self-hosted variable Figtree (OFL, files in src/fonts): no Google Fonts
+// request at build time, same font on every deployment.
+const figtree = localFont({
+  src: [
+    { path: "../../fonts/figtree-latin-wght-normal.woff2", weight: "300 700", style: "normal" },
+    { path: "../../fonts/figtree-latin-wght-italic.woff2", weight: "300 700", style: "italic" },
+  ],
   variable: "--font-figtree",
   display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const viewport: Viewport = {
