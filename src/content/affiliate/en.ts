@@ -1,5 +1,7 @@
 import type { AffiliateData } from "./types";
 
+import { REVIEWS } from "./reviews";
+
 export const en: AffiliateData = {
   cta: "Become a partner",
   learnMore: "Learn more",
@@ -8,7 +10,6 @@ export const en: AffiliateData = {
       { label: "IB Partners", href: "#programs" },
       { label: "Affiliates", href: "#programs" },
       { label: "Why Thaurus", href: "#benefits" },
-      { label: "How it works", href: "#steps" },
       { label: "FAQ", href: "#faq" },
     ],
     language: "Language",
@@ -28,8 +29,8 @@ export const en: AffiliateData = {
     label: "Trusted by",
     tiles: [
       { value: "120+", label: "Media features" },
-      { value: "4.4/5", label: "Trustpilot rating" },
-      { value: "4.6/5", label: "Google rating" },
+      { value: "4.4/5", label: "Trustpilot rating", logo: "trustpilot" },
+      { value: "4.6/5", label: "Google rating", logo: "google" },
     ],
   },
   programs: {
@@ -82,7 +83,9 @@ export const en: AffiliateData = {
   testimonials: {
     eyebrow: "Testimonials",
     title: "See what our partners say about us",
-    items: [],
+    authorLabel: "Thaurus Partner",
+    showAll: "Show all reviews",
+    items: REVIEWS,
     pending: "Partner reviews are being collected and will be published here with the partner's name and program.",
     note: "Reviews are based on feedback from Thaurus partners. Individual experiences may vary.",
   },

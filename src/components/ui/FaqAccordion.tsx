@@ -1,11 +1,12 @@
 import { JsonLd } from "@/components/seo/JsonLd";
+import { cn } from "@/lib/cn";
 
 export type FaqItem = { q: string; a: string };
 
 /** Accessible accordion built on native <details>/<summary> (works without JS). */
-export function FaqAccordion({ items }: { items: readonly FaqItem[] }) {
+export function FaqAccordion({ items, className }: { items: readonly FaqItem[]; className?: string }) {
   return (
-    <div className="mx-auto max-w-3xl divide-y divide-edge rounded-card border border-edge bg-surface-2/40">
+    <div className={cn("mx-auto max-w-3xl divide-y divide-edge rounded-card border border-edge bg-surface-2/40", className)}>
       {items.map((item, idx) => (
         <details key={idx} className="group px-6">
           <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-left text-lg font-medium text-fg [&::-webkit-details-marker]:hidden">

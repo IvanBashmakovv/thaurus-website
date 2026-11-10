@@ -16,6 +16,8 @@ import { BenefitArt } from "@/components/affiliate/BenefitArt";
 import { ApplyForm } from "@/components/affiliate/ApplyForm";
 import { ProgramLogo } from "@/components/affiliate/ProgramLogo";
 import { VelocityText } from "@/components/affiliate/VelocityText";
+import { RatingLogo } from "@/components/affiliate/RatingLogo";
+import { Reviews } from "@/components/affiliate/Reviews";
 import { cn } from "@/lib/cn";
 
 const PATH = routes.affiliate;
@@ -62,33 +64,17 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
                 <a href="#programs" className={cn(BTN, "btn-glass hidden h-13 px-7 text-base sm:inline-flex")}>{a.learnMore}</a>
               </div>
             </div>
-            <ul className="-mx-5 mt-16 grid gap-4 border-t border-white/15 px-6 pt-5 sm:mx-auto sm:mt-14 sm:max-w-4xl sm:grid-cols-3 sm:gap-6 sm:border-0 sm:px-0 sm:pt-0">
+            <ul className="-mx-5 mt-16 grid gap-4 border-t border-white/15 px-6 pt-5 sm:mx-0 sm:mt-14 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-white/10 sm:rounded-2xl sm:border sm:border-white/12 sm:bg-white/[.04] sm:px-0 sm:pt-0 sm:shadow-[inset_0_1px_0_rgba(255,255,255,.1),0_30px_60px_-40px_rgba(0,0,0,.8)] sm:backdrop-blur-xl">
               {a.hero.features.map((f, i) => (
-                <li key={f.title} className="rise flex items-center gap-2 sm:gap-3.5 sm:justify-self-center" style={{ animationDelay: `${0.25 + i * 0.1}s` }}>
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center sm:h-11 sm:w-11 sm:rounded-full sm:border sm:border-white/15 sm:bg-white/10 sm:backdrop-blur"><Icon name={f.icon} className="h-6 w-6 text-white sm:h-5 sm:w-5" /></span>
-                  <span className="text-start leading-tight"><span className="block text-base font-normal leading-6 text-white sm:text-sm sm:font-semibold sm:leading-tight">{f.title}</span><span className="hidden text-xs text-white/60 sm:block">{f.sub}</span></span>
+                <li key={f.title} className="rise flex items-center gap-2 sm:gap-4 sm:px-7 sm:py-6" style={{ animationDelay: `${0.25 + i * 0.1}s` }}>
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center sm:h-12 sm:w-12 sm:rounded-full sm:bg-[linear-gradient(180deg,#4f55a3,#2f6bd6)] sm:shadow-[0_0_28px_-6px_rgba(47,107,214,.95),inset_0_1px_0_rgba(255,255,255,.25)]"><Icon name={f.icon} className="h-6 w-6 text-white sm:h-5 sm:w-5" /></span>
+                  <span className="text-start leading-tight"><span className="block text-base font-normal leading-6 text-white sm:text-[15px] sm:font-semibold sm:leading-tight">{f.title}</span><span className="hidden text-[13px] text-white/60 sm:mt-0.5 sm:block">{f.sub}</span></span>
                 </li>
               ))}
             </ul>
           </Container>
         </section>
 
-        {/* 2. JOURNEY — steps drawn over the atmosphere */}
-        <section id="steps" className="relative scroll-mt-20 pb-10 pt-4 sm:pb-14 sm:pt-6">
-          <Container className="relative z-10">
-            <ol className="relative mx-auto grid max-w-5xl gap-6 ps-9 sm:grid-cols-4 sm:gap-10 sm:ps-0 before:absolute before:bottom-3 before:left-[6px] before:top-2 before:w-px before:bg-white/20 sm:before:hidden">
-              <span aria-hidden className="absolute left-[12%] right-[12%] top-[7px] hidden h-px bg-gradient-to-r from-transparent via-white/40 to-transparent sm:block" />
-              {a.steps.items.map((s, i) => (
-                <li key={s.title} className="relative text-start sm:text-center">
-                  <span className="dot-glow absolute -left-9 top-1 block h-3.5 w-3.5 rounded-full bg-white sm:static sm:mx-auto" />
-                  <span className="inline-flex rounded-full bg-[#1b1a35]/80 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-[#c7d2ff] sm:mt-5">{String(i + 1).padStart(2, "0")} · {a.steps.stepLabel}</span>
-                  <h3 className="mt-3 text-lg font-semibold text-white">{s.title}</h3>
-                  <p className="mt-1.5 text-sm text-white/65">{s.body}</p>
-                </li>
-              ))}
-            </ol>
-          </Container>
-        </section>
 
         {/* 3. TRUSTED BY — inline logos, ratings, three glowing tiles */}
         <section className="relative pb-12 pt-6 sm:pb-24 sm:pt-8">
@@ -97,12 +83,12 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
             <div className="mx-auto mt-5 grid max-w-xs grid-cols-2 items-center justify-items-center gap-x-8 gap-y-6 sm:flex sm:max-w-none sm:justify-center sm:gap-x-12">
               {pressLogos.map((l) => <Image key={l.name} src={l.src} alt={l.name} width={l.width} height={l.height} className="h-6 w-auto max-w-[8rem] object-contain opacity-90 brightness-0 invert sm:h-7" />)}
             </div>
-            <div className="swipe mx-auto mt-9 max-w-6xl sm:mt-14 md:grid-cols-3">
+            <div className="mt-9 grid gap-4 sm:mt-12 sm:gap-5 md:grid-cols-3">
               {a.trusted.tiles.map((t) => (
-                <div key={t.label} className="g-tile px-6 py-7 text-center sm:px-8 sm:py-12">
-                  <div className="relative text-5xl font-bold tabular-nums tracking-tight text-white sm:text-7xl">{t.value}</div>
-                  <span className="relative mx-auto mt-5 block h-1 w-12 rounded-full bg-[#c7d2ff]/80" />
-                  <div className="relative mt-4 text-xs font-bold uppercase tracking-[0.22em] text-white/80">{t.label}</div>
+                <div key={t.label} className="g-tile flex flex-col items-center px-6 py-6 text-center sm:py-7">
+                  {t.logo ? <RatingLogo kind={t.logo} className="relative" /> : <span className="relative inline-flex h-6 items-center gap-1.5 text-[15px] font-semibold text-white"><Icon name="globe" className="h-5 w-5" />Media</span>}
+                  <div className="relative mt-3 text-4xl font-bold tabular-nums tracking-tight text-white sm:text-5xl">{t.value}</div>
+                  <div className="relative mt-2 text-[11px] font-bold uppercase tracking-[0.22em] text-white/70">{t.label}</div>
                 </div>
               ))}
             </div>
@@ -116,7 +102,7 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
         <Container className="relative">
           <p className="text-center text-base font-medium uppercase tracking-[0.6px] text-white/95 sm:text-xs sm:font-bold sm:tracking-[0.3em] sm:text-white/70">{a.programs.eyebrow}</p>
           <h2 className="mx-auto mt-3 hidden max-w-3xl text-center text-[28px] font-bold leading-tight text-white sm:mt-4 sm:block sm:text-5xl">{a.programs.title}</h2>
-          <div className="swipe mx-auto mt-7 max-w-5xl sm:mt-12 md:grid-cols-2">
+          <div className="mt-7 grid gap-4 sm:mt-12 sm:gap-6 md:grid-cols-2">
             {a.programs.cards.map((c) => <ProgramCardView key={c.program} card={c} learnMore={a.learnMore} />)}
           </div>
         </Container>
@@ -125,8 +111,8 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
       {/* 5. KEY BENEFITS — 2 + 2 + 3 glass cards */}
       <section id="benefits" className={cn(LIGHT, "scroll-mt-20 py-8 sm:py-28")}>
         <Container>
-          <SectionHeading eyebrow={a.benefits.eyebrow} title={a.benefits.title} />
-          <div className="swipe mt-8 sm:mt-14 md:grid-cols-2 lg:grid-cols-6">
+          <SectionHeading align="start" eyebrow={a.benefits.eyebrow} title={a.benefits.title} />
+          <div className="mt-8 grid gap-4 sm:mt-12 sm:gap-5 md:grid-cols-2 lg:grid-cols-6">
             {a.benefits.items.map((b, i) => (
               <div key={b.title} className={cn("l-card flex flex-col p-5 sm:p-6", i < 4 ? "lg:col-span-3" : "lg:col-span-2")}>
                 <BenefitArt kind={b.art} tall={i < 4} />
@@ -141,9 +127,9 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
       {/* 6. COMPARISON — glass table */}
       <section id="comparison" className={cn(LIGHT2, "scroll-mt-20 py-8 sm:py-28")}>
         <Container>
-          <SectionHeading eyebrow={a.comparison.eyebrow} title={a.comparison.title} />
+          <SectionHeading align="start" eyebrow={a.comparison.eyebrow} title={a.comparison.title} />
           <div className="md:hidden">
-            <div className="swipe mt-8">
+            <div className="mt-8 grid gap-4">
             {a.comparison.rows.map((r) => (
               <div key={r.label} className="l-card p-5">
                 <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-fg-faint">{r.label}</p>
@@ -156,7 +142,7 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
             </div>
             <a href={APPLY} className={cn(BTN, "btn-glow mt-5 w-full")}>{a.cta}</a>
           </div>
-          <div className="l-card mx-auto mt-14 hidden max-w-5xl overflow-x-auto p-2 sm:p-4 md:block">
+          <div className="l-card mt-12 hidden overflow-x-auto p-2 sm:p-4 md:block">
             <table className="w-full min-w-[640px] border-collapse text-sm">
               <thead>
                 <tr className="border-b border-[#131228]/10">
@@ -187,30 +173,25 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
       {/* 7. TESTIMONIALS */}
       <section className={cn(DARK, "py-8 sm:py-28")}>
         <Container>
-          <SectionHeading eyebrow={a.testimonials.eyebrow} title={a.testimonials.title} />
-          {a.testimonials.items.length > 0 ? (
-            <div className="mt-12 [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
-              <Marquee duration={90}>
-                {a.testimonials.items.map((t, i) => (
-                  <figure key={i} className={cn("w-80 shrink-0 rounded-[20px] p-6", i % 2 ? "bg-[linear-gradient(135deg,#131228,#2f6bd6)] text-white" : "g-card")}>
-                    <blockquote className="text-sm leading-relaxed">{t.quote}</blockquote>
-                    <figcaption className="mt-5 text-sm font-semibold">{t.author}{t.role && <span className="block text-xs font-normal opacity-70">{t.role}</span>}</figcaption>
-                  </figure>
-                ))}
-              </Marquee>
-            </div>
-          ) : (
-            <p className="g-card mx-auto mt-10 max-w-xl p-8 text-center text-sm text-white/65">{a.testimonials.pending}</p>
-          )}
-          <p className="mx-auto mt-8 max-w-2xl text-center text-xs text-white/40">{a.testimonials.note}</p>
+          <SectionHeading align="start" eyebrow={a.testimonials.eyebrow} title={a.testimonials.title} />
+          <div className="mt-8 sm:mt-12">
+            {a.testimonials.items.length > 0 ? (
+              <Reviews items={a.testimonials.items} authorLabel={a.testimonials.authorLabel} showAll={a.testimonials.showAll} />
+            ) : (
+              <p className="g-card p-8 text-sm text-white/65">{a.testimonials.pending}</p>
+            )}
+          </div>
+          <p className="mt-6 text-xs text-white/40">{a.testimonials.note}</p>
         </Container>
       </section>
 
       {/* 8. FAQ */}
       <section id="faq" className={cn(LIGHT, "scroll-mt-20 py-8 sm:py-28")}>
         <Container>
-          <SectionHeading eyebrow={a.faq.eyebrow} title={a.faq.title} />
-          <div className="mt-8 sm:mt-12"><FaqAccordion items={a.faq.items} /></div>
+          <div className="lg:grid lg:grid-cols-[1fr_2fr] lg:gap-12">
+            <SectionHeading align="start" eyebrow={a.faq.eyebrow} title={a.faq.title} />
+            <div className="mt-8 lg:mt-0"><FaqAccordion items={a.faq.items} className="max-w-none" /></div>
+          </div>
         </Container>
       </section>
 
@@ -218,8 +199,9 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
       <section id="apply" className={cn(GRADIENT, "scroll-mt-20 py-8 sm:py-24")}>
         <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(80%_60%_at_50%_0%,rgba(255,255,255,.18),transparent_70%)]" />
         <Container className="relative">
-          <h2 className="text-center text-[28px] font-bold leading-tight text-white sm:text-5xl">{a.finalCta.title}</h2>
-          <div className="swipe mx-auto mt-8 max-w-5xl sm:mt-12 md:grid-cols-2">
+          <h2 className="text-[28px] font-bold leading-tight text-white sm:text-5xl">{a.finalCta.title}</h2>
+          <div className="mt-8 grid gap-4 sm:mt-12 sm:gap-6 lg:grid-cols-[1fr_1.4fr] lg:items-start">
+          <div className="grid gap-4 sm:gap-6">
             {a.finalCta.cards.map((c) => (
               <div key={c.program} className="tone-light flex flex-col rounded-lg bg-white p-6 text-fg sm:rounded-[20px] sm:p-8 sm:shadow-[0_40px_80px_-40px_rgba(0,0,0,.6)]">
                 <ProgramLogo program={c.program} />
@@ -232,13 +214,14 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
               </div>
             ))}
           </div>
-          <div id="apply-form" className="tone-light mx-auto mt-6 max-w-3xl scroll-mt-24 rounded-2xl bg-white p-5 sm:mt-10 sm:rounded-[20px] sm:p-6 text-fg shadow-[0_40px_80px_-40px_rgba(0,0,0,.6)] sm:p-8">
+          <div id="apply-form" className="tone-light scroll-mt-24 rounded-2xl bg-white p-5 sm:rounded-[20px] sm:p-6 text-fg shadow-[0_40px_80px_-40px_rgba(0,0,0,.6)] sm:p-8">
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-fg-faint">{a.apply.eyebrow}</p>
             <h3 className="mt-2 text-2xl font-semibold">{a.apply.title}</h3>
             <p className="mt-1 text-sm text-fg-muted">{a.apply.sub}</p>
             <div className="mt-6"><ApplyForm copy={a.apply} /></div>
           </div>
-          <p className="mx-auto mt-6 max-w-3xl text-center text-xs text-white/70">{a.apply.risk}</p>
+          </div>
+          <p className="mt-6 text-xs text-white/70">{a.apply.risk}</p>
         </Container>
       </section>
 
