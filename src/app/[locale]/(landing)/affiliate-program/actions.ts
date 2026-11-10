@@ -14,6 +14,41 @@ const schema = z.object({
 export type ApplyField = "name" | "email" | "contact" | "traffic" | "program";
 export type ApplyState = { ok: boolean; errors?: Partial<Record<ApplyField, true>>; submitted?: boolean };
 
+/**
+ * Forward an application to the spreadsheet webhook (APPLICATIONS_WEBHOOK_URL,
+ * a Google Apps Script web app that appends a row). Never blocks the user on a
+ * webhook failure: the error is logged and the submission still succeeds.
+ */
+async function forward(data: z.infer<typeof schema>) {
+  const url = process.env.APPLICATIONS_WEBHOOK_URL;
+  if (!url) {
+    console.warn("[apply] APPLICATIONS_WEBHOOK_URL is not set; application not stored", data.email);
+    return;
+  }
+  const payload = {
+    secret: process.env.APPLICATIONS_WEBHOOK_SECRET ?? "",
+    submittedAt: new Date().toISOString(),
+    program: data.program === "ib" ? "IB Partners (revenue share)" : "Affiliates (CPA)",
+    name: data.name,
+    email: data.email,
+    contact: data.contact,
+    traffic: data.traffic,
+    message: data.message ?? "",
+  };
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload),
+      redirect: "follow",
+      signal: AbortSignal.timeout(15_000),
+    });
+    if (!res.ok) console.error("[apply] webhook answered", res.status);
+  } catch (err) {
+    console.error("[apply] webhook failed", err);
+  }
+}
+
 /** Partner application. Validates server-side; error flags are keyed by field so the
  *  client renders localized messages. TODO(ivan): forward to CRM / email endpoint. */
 export async function applyPartner(_prev: ApplyState, formData: FormData): Promise<ApplyState> {
@@ -30,6 +65,6 @@ export async function applyPartner(_prev: ApplyState, formData: FormData): Promi
     for (const issue of parsed.error.issues) errors[issue.path[0] as ApplyField] = true;
     return { ok: false, errors, submitted: true };
   }
-  // TODO(ivan): await fetch(process.env.PARTNER_APPLY_ENDPOINT, { method: "POST", body: JSON.stringify(parsed.data) })
+  await forward(parsed.data);
   return { ok: true, submitted: true };
 }

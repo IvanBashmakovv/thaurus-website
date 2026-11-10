@@ -176,7 +176,7 @@ export default async function AffiliateLanding({ params }: { params: Promise<{ l
           <SectionHeading align="start" eyebrow={a.testimonials.eyebrow} title={a.testimonials.title} />
           <div className="mt-8 sm:mt-12">
             {a.testimonials.items.length > 0 ? (
-              <Reviews items={a.testimonials.items} authorLabel={a.testimonials.authorLabel} showAll={a.testimonials.showAll} />
+              <Reviews items={a.testimonials.items} authorLabel={a.testimonials.authorLabel} />
             ) : (
               <p className="g-card p-8 text-sm text-white/65">{a.testimonials.pending}</p>
             )}
