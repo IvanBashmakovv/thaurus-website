@@ -23,6 +23,7 @@ export type ApplyCopy = {
   sending: string;
   successTitle: string;
   successBody: string;
+  successSteps: [string, string, string];
   errorHint: string;
   errors: Record<ApplyField, string>;
 };
@@ -34,13 +35,29 @@ export function ApplyForm({ copy }: { copy: ApplyCopy }) {
   const [state, action, pending] = useActionState<ApplyState, FormData>(applyPartner, { ok: false });
 
   if (state.ok) {
+    const first = state.name?.trim().split(/\s+/)[0];
     return (
-      <div className="rounded-card border border-edge bg-surface-2/70 p-8 text-center">
-        <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-success/20 text-success">
-          <Icon name="check" className="h-6 w-6" />
+      <div className="rounded-card border border-edge bg-surface-2/70 p-8 text-center" role="status" aria-live="polite">
+        <span className="pop mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[linear-gradient(180deg,#4f55a3,#2f6bd6)] text-white shadow-[0_0_40px_-8px_rgba(47,107,214,.9)]">
+          <svg viewBox="0 0 24 24" className="h-8 w-8" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <path className="check-draw" d="M5 12.5l4.5 4.5L19 7" />
+          </svg>
         </span>
-        <h3 className="mt-4 text-xl font-semibold text-fg">{copy.successTitle}</h3>
-        <p className="mt-2 text-sm text-fg-muted">{copy.successBody}</p>
+        <h3 className="rise mt-5 text-2xl font-semibold text-fg" style={{ animationDelay: ".35s" }}>
+          {copy.successTitle}{first ? `, ${first}` : ""}
+        </h3>
+        <p className="rise mt-2 text-sm text-fg-muted" style={{ animationDelay: ".5s" }}>{copy.successBody}</p>
+        <ol className="mx-auto mt-7 max-w-sm space-y-3 text-start">
+          {copy.successSteps.map((s, i) => (
+            <li key={s} className="rise flex items-center gap-3" style={{ animationDelay: `${0.75 + i * 0.3}s` }}>
+              <span className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold", i === 0 ? "bg-success/20 text-success" : i === 1 ? "bg-[#2f6bd6]/15 text-[#2f6bd6]" : "border border-edge bg-surface text-fg-muted")}>
+                {i === 0 ? <Icon name="check" className="h-4 w-4" /> : i + 1}
+              </span>
+              <span className="text-sm text-fg">{s}</span>
+              {i === 1 && <span className="ms-auto h-2 w-2 shrink-0 animate-pulse rounded-full bg-[#2f6bd6]" aria-hidden />}
+            </li>
+          ))}
+        </ol>
       </div>
     );
   }
