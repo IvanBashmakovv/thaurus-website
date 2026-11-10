@@ -406,3 +406,10 @@ html { scroll-behavior: smooth; }
 
 
 
+
+/* Application success: check mark draws itself, badge pops in. */
+@keyframes check-draw { from { stroke-dashoffset: 30; } to { stroke-dashoffset: 0; } }
+.check-draw { stroke-dasharray: 30; stroke-dashoffset: 30; animation: check-draw .6s .3s ease-out both; }
+@keyframes pop { 0% { transform: scale(.4); opacity: 0; } 70% { transform: scale(1.08); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+.pop { animation: pop .55s cubic-bezier(.2,.9,.3,1.3) both; }
+@media (prefers-reduced-motion: reduce) { .check-draw, .pop { animation: none; stroke-dashoffset: 0; } }

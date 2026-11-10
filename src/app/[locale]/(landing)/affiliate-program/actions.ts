@@ -12,7 +12,7 @@ const schema = z.object({
 });
 
 export type ApplyField = "name" | "email" | "contact" | "traffic" | "program";
-export type ApplyState = { ok: boolean; errors?: Partial<Record<ApplyField, true>>; submitted?: boolean };
+export type ApplyState = { ok: boolean; errors?: Partial<Record<ApplyField, true>>; submitted?: boolean; name?: string };
 
 /**
  * Forward an application to the spreadsheet webhook (APPLICATIONS_WEBHOOK_URL,
@@ -31,7 +31,8 @@ async function forward(data: z.infer<typeof schema>) {
     program: data.program === "ib" ? "IB Partners (revenue share)" : "Affiliates (CPA)",
     name: data.name,
     email: data.email,
-    contact: data.contact,
+    // Leading apostrophe: Sheets would otherwise parse "+234…" as a formula (#ERROR!).
+    contact: "'" + data.contact,
     traffic: data.traffic,
     message: data.message ?? "",
   };
@@ -66,5 +67,5 @@ export async function applyPartner(_prev: ApplyState, formData: FormData): Promi
     return { ok: false, errors, submitted: true };
   }
   await forward(parsed.data);
-  return { ok: true, submitted: true };
+  return { ok: true, submitted: true, name: parsed.data.name };
 }
