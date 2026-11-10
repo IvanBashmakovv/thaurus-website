@@ -30,5 +30,5 @@ export default function proxy(req: NextRequest) {
 
 export const config = {
   // Run on all pathnames except API, Next internals and files with an extension.
-  matcher: ["/((?!api|_next|_vercel|.*\..*).*)"],
+  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
 };
