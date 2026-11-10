@@ -63,8 +63,9 @@ export function ApplyForm({ copy }: { copy: ApplyCopy }) {
   }
 
   const err = (f: ApplyField) => (state.errors?.[f] ? copy.errors[f] : null);
-  const Field = ({ f, label, hint, children }: { f: ApplyField; label: string; hint?: string; children: React.ReactNode }) => (
-    <label className={cn("block", err(f) && "[&_input]:border-red-400 [&_textarea]:border-red-400")}>
+  // Plain render helper (not a component) so React keeps the inputs mounted between renders.
+  const field = ({ f, label, hint, children }: { f: ApplyField; label: string; hint?: string; children: React.ReactNode }) => (
+    <label key={f} className={cn("block", err(f) && "[&_input]:border-red-400 [&_textarea]:border-red-400")}>
       <span className="mb-1.5 block text-sm font-medium text-fg-muted">{label}</span>
       {children}
       {err(f) ? <span className="mt-1 block text-xs text-red-400">{err(f)}</span> : hint ? <span className="mt-1 block text-xs text-fg-faint">{hint}</span> : null}
@@ -74,10 +75,10 @@ export function ApplyForm({ copy }: { copy: ApplyCopy }) {
   return (
     <form action={action} noValidate className="rounded-card border border-edge bg-surface-2/70 p-6 sm:p-8">
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field f="name" label={copy.name}><input name="name" className={input} autoComplete="name" /></Field>
-        <Field f="email" label={copy.email}><input name="email" type="email" className={input} autoComplete="email" /></Field>
-        <Field f="contact" label={copy.contact} hint={copy.contactHint}><input name="contact" className={input} /></Field>
-        <Field f="traffic" label={copy.traffic} hint={copy.trafficHint}><input name="traffic" className={input} /></Field>
+        {field({ f: "name", label: copy.name, children: <input name="name" className={input} autoComplete="name" /> })}
+        {field({ f: "email", label: copy.email, children: <input name="email" type="email" className={input} autoComplete="email" /> })}
+        {field({ f: "contact", label: copy.contact, hint: copy.contactHint, children: <input name="contact" className={input} /> })}
+        {field({ f: "traffic", label: copy.traffic, hint: copy.trafficHint, children: <input name="traffic" className={input} /> })}
       </div>
       <fieldset className="mt-5">
         <legend className="mb-2 block text-sm font-medium text-fg-muted">{copy.program}</legend>
