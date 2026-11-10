@@ -84,10 +84,8 @@ export const es: AffiliateData = {
     eyebrow: "Testimonios",
     title: "Qué dicen nuestros socios",
     authorLabel: "Socio de Thaurus",
-    showAll: "Ver todas las reseñas",
     items: REVIEWS,
     pending: "Estamos recopilando reseñas de socios; se publicarán aquí con nombre y programa.",
-    note: "Las reseñas se basan en comentarios de socios de Thaurus. Las experiencias individuales pueden variar.",
   },
   faq: {
     eyebrow: "FAQ",
