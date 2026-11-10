@@ -11,6 +11,7 @@ export function Reviews({ items, authorLabel }: { items: Testimonial[]; authorLa
             <span aria-hidden className="font-serif text-4xl leading-none text-[#8fa4ff]/70">“</span>
             <blockquote className="mt-1 flex-1 text-[15px] leading-relaxed text-white/90">{t.quote}</blockquote>
             <figcaption className="mt-4 flex items-center gap-3 border-t border-white/10 pt-4">
+              {/* eslint-disable-next-line @next/next/no-img-element -- tiny flag PNGs from a CDN; next/image would need remotePatterns */}
               <img
                 src={`https://flagcdn.com/48x36/${t.code.toLowerCase()}.png`}
                 srcSet={`https://flagcdn.com/96x72/${t.code.toLowerCase()}.png 2x`}

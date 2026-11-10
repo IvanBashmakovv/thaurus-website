@@ -11,7 +11,6 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/Section";
 import { Icon } from "@/components/ui/Icon";
 import { FaqAccordion, FaqJsonLd } from "@/components/ui/FaqAccordion";
-import { Marquee } from "@/components/affiliate/Marquee";
 import { BenefitArt } from "@/components/affiliate/BenefitArt";
 import { ApplyForm } from "@/components/affiliate/ApplyForm";
 import { ProgramLogo } from "@/components/affiliate/ProgramLogo";
