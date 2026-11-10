@@ -1,5 +1,7 @@
 import type { AffiliateData } from "./types";
 
+import { REVIEWS } from "./reviews";
+
 export const es: AffiliateData = {
   cta: "Hazte socio",
   learnMore: "Saber más",
@@ -8,7 +10,6 @@ export const es: AffiliateData = {
       { label: "IB Partners", href: "#programs" },
       { label: "Afiliados", href: "#programs" },
       { label: "Por qué Thaurus", href: "#benefits" },
-      { label: "Cómo funciona", href: "#steps" },
       { label: "FAQ", href: "#faq" },
     ],
     language: "Idioma",
@@ -28,8 +29,8 @@ export const es: AffiliateData = {
     label: "Confían en nosotros",
     tiles: [
       { value: "120+", label: "Apariciones en medios" },
-      { value: "4.4/5", label: "Valoración Trustpilot" },
-      { value: "4.6/5", label: "Valoración Google" },
+      { value: "4.4/5", label: "Valoración Trustpilot", logo: "trustpilot" },
+      { value: "4.6/5", label: "Valoración Google", logo: "google" },
     ],
   },
   programs: {
@@ -82,7 +83,9 @@ export const es: AffiliateData = {
   testimonials: {
     eyebrow: "Testimonios",
     title: "Qué dicen nuestros socios",
-    items: [],
+    authorLabel: "Socio de Thaurus",
+    showAll: "Ver todas las reseñas",
+    items: REVIEWS,
     pending: "Estamos recopilando reseñas de socios; se publicarán aquí con nombre y programa.",
     note: "Las reseñas se basan en comentarios de socios de Thaurus. Las experiencias individuales pueden variar.",
   },
